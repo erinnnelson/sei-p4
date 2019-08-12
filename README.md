@@ -63,7 +63,7 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 
 | **Potential Problem** | **Proposed Solution:** |
 | --- | --- |
-| Update associats in join table | ??? |
+| Update associations in choices_users join table | ??? |
 | Stop users from voting more than once | Check all choices in a poll to see if user_id is present |
 | Allowing non registered users to vote | Store IP address or similar user indicator as a temporary user |
 
