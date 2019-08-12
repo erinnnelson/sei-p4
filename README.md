@@ -1,8 +1,8 @@
 <!-- <p align="center"><img src="assets/logos/team-taco-logo.png" alt="team taco logo" width="500"/></p> -->
 
-This is the 4th Project of NYC's General Assembly SEI Panda Cohort, created by Erinn Nelson.
+# QuickPoll
 
-# qip
+This is the 4th Project of NYC's General Assembly SEI Panda Cohort, created by Erinn Nelson.
 
 ## Project Outline
 
@@ -42,30 +42,42 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 ## PostMVP
 * Unregistered users can vote on polls (one time only)
 * Polls can marked as closed by the creator
-* Users can change their vote
 * Polls can be updated on the user's screen in realtime
+* Users can change their vote
 
-<!-- ## Additional Libraries
+## Development Timeline
 
+| **Complete Date** | **Task** |
+| --- | --- |
+| 8/12 | Server |
+| 8/13 | Functional Front End |
+| 8/14 | MVP |
+| 8/15 | PostMVP: Unregistered user voting |
+| 8/16 | Internal Presentations |
+| 8/20 | PostMVP: Realtime results |
+| 8/21 | External Presentations |
+
+
+
+## Issues and Resolutions
+
+| **Potential Problem** | **Proposed Solution:** |
+| --- | --- |
+| Update associats in join table | ??? |
+| Stop users from voting more than once | Check all choices in a poll to see if user_id is present |
+| Allowing non registered users to vote | Store IP address or similar user indicator as a temporary user |
+
+## Additional Libraries
+
+### React
 * [Axios](https://www.npmjs.com/package/axios)
-* [PostgreSQL](https://www.npmjs.com/package/pg)
-* [Sequelize](https://www.npmjs.com/package/sequelize)
-* [CORS](https://www.npmjs.com/package/cors)
-* [Nodemon](https://www.npmjs.com/package/nodemon)
-* [Body Parser](https://www.npmjs.com/package/body-parser)
-* [Morgan](https://www.npmjs.com/package/morgan)
-* [JSON Web Tokon](https://www.npmjs.com/package/jsonwebtoken)
-* [BCrypt](https://www.npmjs.com/package/bcrypt)
-* [React Router](https://www.npmjs.com/package/react-router)
+* [Data Driven Documents](https://www.npmjs.com/package/d3)
+* [React Router Dom](https://www.npmjs.com/package/react-router-dom)
 * [React Router Hash Link](https://www.npmjs.com/package/react-router-hash-link)
 * [React Modal](https://www.npmjs.com/package/react-modal)
 * [React OnClick Outside](https://www.npmjs.com/package/react-onclickoutside/v/4.8.0)
 
-## Issues and Resolutions
-
-
-
-| **Potential Problem** | **Proposed Solution:** |
-| --- | --- |
-| Searching | Use PostGreSQL select parameter 'LIKE' |
-| Users forgetting passwords | Create temporary token that allows user to create new password | -->
+### Ruby
+* [CORS](https://rubygems.org/gems/rack-cors/versions/0.4.0)
+* [JSON Web Tokon](https://rubygems.org/gems/jwt/versions/1.5.4)
+* [BCrypt](https://rubygems.org/gems/bcrypt/versions/3.1.12)
