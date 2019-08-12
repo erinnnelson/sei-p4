@@ -1,8 +1,8 @@
 class ChoicesController < ApplicationController
   def index
     @poll = Poll.find(params[:poll_id])
-    @choices = Choice.where(choice_id: @choice.id)
-    render json: @choices, include: :users, status: :ok
+    @choices = Choice.where(poll_id: @poll.id)
+    render json: @choices, include: [:users, :poll], status: :ok
   end
 
   def show
@@ -11,10 +11,10 @@ class ChoicesController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
     @choice = Choice.new(choice_params)
     if @choice.save
-      @user.choices.push(@choice)
+      # @user.choices.push(@choice)
       render json: @choice, include: :users, status: :created
     else
       render json: { errors: @choice.errors }, status: :unprocessable_entity

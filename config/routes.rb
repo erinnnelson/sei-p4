@@ -4,5 +4,5 @@ Rails.application.routes.draw do
       resources :choices
     end
   end
-  # resources :choices
+  
 end

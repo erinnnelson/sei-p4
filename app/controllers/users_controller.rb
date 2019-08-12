@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # render json: @user, include: [{polls: {include: :choices}}, {choices: {include: :poll}}], status: :ok
-    render json: @user, include: [{polls: {include: {choices: {include: :users}}}}, {choices: {include: :poll}}], status: :ok
+    render json: @user, include: [{polls: {include: {choices: {include: :users}}}}, {choices: {include: {poll: {include: {choices: {include: :users}}}}}}], status: :ok
   end
 
   # POST /users
