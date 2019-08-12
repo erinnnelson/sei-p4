@@ -8,6 +8,10 @@ This is the 4th Project of NYC's General Assembly SEI Panda Cohort, created by E
 
 This app is designed to let users quickly create and share short polls for the purpose of data gathering in a friendly and easily digestable format.
 
+_Site link not yet available_
+
+Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrails.org/)
+
 ### Set Up
 * Fork and clone this repo
 * cd into the app directory
@@ -15,10 +19,6 @@ This app is designed to let users quickly create and share short polls for the p
 * run `rails s` to initialize the backend server
 * `cd client`
 * run `npm start` and allow the client server to run on an available port
-
-_Site link not yet available_
-
-Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrails.org/)
 
 ## Feature List/User Stories
 * As a group leader, I want to be able to get gather easy to understand feedback from my group so that I can understand what they want and/or feel
@@ -57,8 +57,6 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 | 8/20 | PostMVP: Realtime results |
 | 8/21 | External Presentations |
 
-
-
 ## Issues and Resolutions
 
 | **Potential Problem** | **Proposed Solution:** |
@@ -81,3 +79,4 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 * [CORS](https://rubygems.org/gems/rack-cors/versions/0.4.0)
 * [JSON Web Tokon](https://rubygems.org/gems/jwt/versions/1.5.4)
 * [BCrypt](https://rubygems.org/gems/bcrypt/versions/3.1.12)
+* [Awesome Print](https://rubygems.org/gems/awesome_print/versions/1.8.0)
