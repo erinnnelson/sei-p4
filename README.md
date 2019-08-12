@@ -27,7 +27,7 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 
 ## ERD
 
-<img src="assets/erd/erd.jpg" alt="entity relationship diagram" width="400"/>
+<img src="assets/erd/erd.png" alt="entity relationship diagram" width="400"/>
 
 ## Wireframes
 
