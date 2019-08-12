@@ -42,6 +42,7 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 ## PostMVP
 * Unregistered users can vote on polls (one time only)
 * Polls can marked as closed by the creator
+* Registered users can see their voting history
 * Polls can be updated on the user's screen in realtime
 * Users can change their vote
 
