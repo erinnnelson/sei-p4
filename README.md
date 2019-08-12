@@ -2,7 +2,7 @@
 
 This is the 4th Project of NYC's General Assembly SEI Panda Cohort, created by Erinn Nelson.
 
-#qip
+# qip
 
 ## Project Outline
 
@@ -31,7 +31,7 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 
 ## Wireframes
 
-<img src="assets/wireframes/user-profile.png" alt="user profile mockup" width="200"/> <img src="assets/wireframes/voting-results.png" alt="voting results mockup" width="200"/> <img src="assets/wireframes/vote-screen.png" alt="voting screen mockup" width="200"/>
+<img src="assets/wireframes/voting-results.png" alt="voting results mockup" width="200"/> <img src="assets/wireframes/vote-screen.png" alt="voting screen mockup" width="200"/> <img src="assets/wireframes/user-profile.png" alt="user profile mockup" width="200"/>
 
 ## MVP
 * Users may create/edit/delete an account
