@@ -12,15 +12,18 @@ class ApplicationController < ActionController::API
   end
 
   def authorize_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
+    @header = request.headers['Authorization']
+    @header = @header.split(' ').last if @header
+    p @header
     begin
-      @decoded = decode(header)
+      @decoded = decode(@header)
+      p @decoded
       @current_user = User.find(@decoded[:id])
+      @current_user
     rescue ActiveRecord::RecordNotFound => e
+      p "WTF!!!!!!"
       render json: { errors: e.message }, status: :unauthorized
     rescue JWT::DecodeError => e
-      p SECRET_KEY
       render json: { errors: e.message }, status: :unauthorized
     end
   end

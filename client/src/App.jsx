@@ -6,7 +6,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import UserPage from './components/UserPage'
 
-import { loginUser, registerUser, verifyUser } from './services/api-helper'
+import { loginUser, registerUser, verifyUser, fetchPolls } from './services/api-helper'
 
 import './App.css';
 
@@ -15,6 +15,7 @@ class App extends React.Component {
     super(props)
     this.state = ({
       currentUser: null,
+      currentUserPolls: [],
       registerFormData: {
         username: '',
         email: '',
@@ -31,8 +32,9 @@ class App extends React.Component {
     const user = await verifyUser();
     if (user) {
       this.setState({
-        currentUser: user
+        currentUser: user,
       })
+      this.updatePolls()
     }
   }
 
@@ -44,14 +46,28 @@ class App extends React.Component {
   handleLogin = async () => {
     const userData = await loginUser(this.state.loginFormData);
     this.setState({
-      currentUser: userData
+      currentUser: userData,
+      loginFormData: {
+        username: '',
+        password: ''
+      }
     })
+    this.updatePolls()
   }
 
   handleRegister = async (ev) => {
     ev.preventDefault();
     await registerUser(this.state.registerFormData);
-    this.handleLogin();
+    const userData = await loginUser(this.state.registerFormData);
+    this.setState({
+      currentUser: userData,
+      registerFormData: {
+        username: '',
+        email: '',
+        password: ''
+      },
+    })
+    this.updatePolls()
   }
 
   handleLogout = () => {
@@ -71,6 +87,15 @@ class App extends React.Component {
     }));
   }
 
+  updatePolls = async () => {
+    if (this.state.currentUser) {
+      const polls = await fetchPolls()
+      this.setState({
+        currentUserPolls: polls,
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -83,19 +108,12 @@ class App extends React.Component {
                 <button onClick={this.handleLogout}>logout</button>
               </>
               :
-              <Link to='/login'><button>login</button></Link>
+              <Link to='/'><button>login</button></Link>
             }
           </div>
-          <Link to='/user/:id'>profile</Link>
+          {this.state.currentUser && <Link to={`/`}>profile</Link>}
         </header>
         <main>
-          <Route exact path='/login' render={() => (
-            <Login
-              handleLogin={this.handleLogin}
-              handleChange={this.handleAuthChange}
-              formData={this.state.loginFormData}
-            />
-          )}/>
           <Route exact path='/register' render={() => (
             <Register
               handleRegister={this.handleRegister}
@@ -103,11 +121,20 @@ class App extends React.Component {
               formData={this.state.registerFormData}
             />
           )} />
-          <Route exact path='/user/:id' render={(props) => (
-            <UserPage
-              user_id={props.match.params.id}
+          <Route exact path='/' render={() => (
+            this.state.currentUser
+              ?
+              <UserPage
+                user={this.state.currentUser}
+                polls={this.state.currentUserPolls}
+              />
+              :
+              <Login
+              handleLogin={this.handleLogin}
+              handleChange={this.handleAuthChange}
+              formData={this.state.loginFormData}
             />
-          )}/>
+          )} />
         </main>
 
 

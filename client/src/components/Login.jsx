@@ -5,7 +5,6 @@ const Login = (props) => {
 
   return (
     <div className="login-container">
-      <h2>login</h2>
       <hr />
       <form onSubmit={(ev) => {
         ev.preventDefault();

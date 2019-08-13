@@ -24,15 +24,16 @@ export const verifyUser = async () => {
   const token = localStorage.getItem('authToken');
   if (token) {
     api.defaults.headers.common.authorization = `Bearer ${token}`
-    const resp = await api.get('/users/verify');
-    return resp.data
+    const res = await api.get('/users/verify');
+    return res.data
   }
   return false;
 }
 
 // USER CALLS
-export const fetchUser = async (id) => {
-  const res = await api.get(`/users/${id}`);
+export const fetchUser = async () => {
+  const res = await api.get(`/user`);
+  console.log(res.data)
   return res.data;
 };
 
@@ -52,8 +53,8 @@ export const deleteUser = async (id) => {
 };
 
 // POLL CALLS
-export const fetchPolls = async (user_id) => {
-  const res = await api.get(`/users/${user_id}/polls`);
+export const fetchPolls = async () => {
+  const res = await api.get(`/polls`);
   return res.data;
 };
 

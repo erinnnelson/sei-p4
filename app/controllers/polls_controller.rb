@@ -1,6 +1,5 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: %i[show, destroy]
-  before_action :authorize_request
+  before_action :authorize_request, except: :create
 
   def index
     @polls = Poll.where(user_id: @current_user.id)
