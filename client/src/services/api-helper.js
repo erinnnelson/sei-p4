@@ -6,50 +6,33 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
-// export const getPing = async () => {
-//   const res = await api.get('/ping');
-//   return res;
-// };
+// AUTH CALLS
 
-// const storeToken = (token) => {
-//   localStorage.setItem('authToken', token);
-//   api.defaults.headers.common.authorization = `Bearer ${token}`;
-// };
+export const loginUser = async (loginData) => {
+  const resp = await api.post('/auth/login', loginData)
+  localStorage.setItem('authToken', resp.data.token);
+  api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
+  return resp.data.user
+}
 
-// export const removeToken = () => {
-//   localStorage.removeItem('authToken');
-// }
+export const registerUser = async (registerData) => {
+  const resp = await api.post('/users/', { user: registerData })
+  return resp.data
+}
 
-
-// export const verifyToken = async () => {
-//   const token = localStorage.getItem('authToken');
-//   if (token !== null) {
-//     try {
-//       const resp = await api.get('/users/verify', {
-//         headers: {
-//           Authorization: `Bearer ${token}`
-//         }
-//       });
-//       storeToken(token);
-//       return resp.data.user;
-//     } catch (e) {
-//       console.log(e.message);
-//       console.log('invalid token');
-//     }
-//   }
-//   else { console.log('user not logged in') };
-// };
-
-// export const loginUser = async (data) => {
-//   const res = await api.post('/users/login', data);
-//   const { user, token } = res.data;
-//   storeToken(token);
-//   return user;
-// };
+export const verifyUser = async () => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    api.defaults.headers.common.authorization = `Bearer ${token}`
+    const resp = await api.get('/users/verify');
+    return resp.data
+  }
+  return false;
+}
 
 // USER CALLS
 export const fetchUser = async (id) => {
-  const res = await api.get(`/users/id/${id}`);
+  const res = await api.get(`/users/${id}`);
   return res.data;
 };
 

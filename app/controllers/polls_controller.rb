@@ -1,14 +1,15 @@
 class PollsController < ApplicationController
+  before_action :set_poll, only: %i[show, destroy]
+  before_action :authorize_request
+
   def index
-    @user = User.find(params[:user_id])
-    @polls = Poll.where(user_id: @user.id)
+    @polls = Poll.where(user_id: @current_user.id)
     render json: @polls, include: {choices: {include: :users}}, status: :ok
   end
   
   def show
     @poll = Poll.find(params[:id])
     render json: @poll, include: {choices: {include: :users}}, status: :ok
-
   end
   
   def create

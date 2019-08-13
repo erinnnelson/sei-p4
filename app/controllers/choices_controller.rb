@@ -1,4 +1,6 @@
 class ChoicesController < ApplicationController
+  before_action :authorize_request
+  
   def index
     @poll = Poll.find(params[:poll_id])
     @choices = Choice.where(poll_id: @poll.id)
@@ -11,10 +13,8 @@ class ChoicesController < ApplicationController
   end
 
   def create
-    # @user = User.find(params[:user_id])
     @choice = Choice.new(choice_params)
     if @choice.save
-      # @user.choices.push(@choice)
       render json: @choice, include: :users, status: :created
     else
       render json: { errors: @choice.errors }, status: :unprocessable_entity
@@ -33,6 +33,12 @@ class ChoicesController < ApplicationController
   def destroy
     @choice = Choice.find(params[:id])
     @choice.destroy
+    render json: @choice, include: :users, status: :ok
+  end
+
+  def vote
+    @choice = Choice.find(params[:id])
+    @choice.users.push(@current_user)
     render json: @choice, include: :users, status: :ok
   end
 

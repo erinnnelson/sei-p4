@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :users do
-    resources :polls do
-      resources :choices
-    end
+  post '/vote', to: 'choices#vote'
+  post '/auth/login', to: 'authentication#login'
+  get '/users/verify', to: 'users#verify'
+
+  resources :users
+  resources :polls do
+    resources :choices
   end
 end

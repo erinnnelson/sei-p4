@@ -38,6 +38,7 @@ Created with [React](https://reactjs.org/) and [Ruby on Rails](https://rubyonrai
 * Registered users can create/delete and share polls
 * Registered users may vote on polls (one time only)
 * Registered users can view previously created polls
+* Users may see poll results
 
 ## PostMVP
 * Unregistered users can vote on polls (one time only)
