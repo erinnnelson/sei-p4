@@ -42,8 +42,8 @@ class ChoicesController < ApplicationController
     @poll.choices.each do |choice|
     if 
       choice.users.include? @current_user
-      render json: false
-      return
+        render json: false
+        return
       end
     end
     @choice.users.push(@current_user)

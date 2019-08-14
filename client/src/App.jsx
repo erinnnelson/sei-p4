@@ -101,28 +101,22 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>
-          <h1 id='logo'>qwp</h1>
+          <Link to='/'><h1 id='logo'>qwp</h1></Link>
           <div>
             {this.state.currentUser
               ?
               <>
-                <p>{this.state.currentUser.username}</p>
+                <p>{this.state.currentUser && <Link to='/'>{this.state.currentUser.username}</Link>}</p>
                 <button onClick={this.handleLogout}>logout</button>
               </>
               :
               <Link to='/'><button>login</button></Link>
             }
           </div>
-          {this.state.currentUser && <Link to='/'>profile</Link>}
         </header>
         <main>
-          <Route exact path='/register' render={() => (
-            <Register
-              handleRegister={this.handleRegister}
-              handleChange={this.handleAuthChange}
-              formData={this.state.registerFormData}
-            />
-          )} />
+
+          {/* USERPAGE OR LOGIN VIEW */}
           <Route exact path='/' render={() => (
             this.state.currentUser
               ?
@@ -137,18 +131,34 @@ class App extends React.Component {
                 formData={this.state.loginFormData}
               />
           )} />
+
+          {/* SHOWPOLL VIEW */}
           <Route exact path='/poll/:id' render={(props) => (
-            <ShowPoll
-              pollId={props.match.params.id}
-            />
+            this.state.currentUser
+              ?
+              <ShowPoll
+                pollId={props.match.params.id}
+              />
+              :
+              this.props.history.push('/')
+          )} />
+
+          {/* REGISTER VIEW HANDLE ANY STRAY URL REQUESTS */}
+          <Route exact path='/:route' render={(props) => (
+            props.match.params.route === 'register' && !this.state.currentUser
+              ?
+              <Register
+                handleRegister={this.handleRegister}
+                handleChange={this.handleAuthChange}
+                formData={this.state.registerFormData}
+              />
+              :
+              this.props.history.push('/')
           )} />
         </main>
-  
-  
-  
       </div>
-        );
-      }
-    }
-    
+    );
+  }
+}
+
 export default withRouter(App);
