@@ -4,7 +4,6 @@ const Register = (props) => {
 
   return (
     <div className="register-container">
-      <h2>Register</h2>
       <hr />
       <form onSubmit={props.handleRegister} >
         <input
@@ -31,8 +30,7 @@ const Register = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'registerFormData')
           }} />
-        <hr/>
-        <button>Register</button>
+        <button>Sign Up</button>
       </form>
     </div>
   );

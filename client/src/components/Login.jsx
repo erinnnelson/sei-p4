@@ -25,9 +25,7 @@ const Login = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'loginFormData')
           }} />
-        <hr/>
-        <button>Login</button>
-        <Link to='/register'>Register</Link>
+        <button>Sign In</button>
       </form>
     </div>
   );

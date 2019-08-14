@@ -3,10 +3,9 @@ import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { loginUser, registerUser, verifyUser, fetchPolls } from './services/api-helper'
 
-import Login from './components/Login'
-import Register from './components/Register'
 import UserPage from './components/user/UserPage'
 import ShowPoll from './components/show/ShowPoll'
+import LoginRegister from './components/LoginRegister'
 
 import './App.css';
 
@@ -25,6 +24,7 @@ class App extends React.Component {
         username: '',
         password: ''
       },
+      registerFormView: false,
       showPoll: null
     })
   }
@@ -40,19 +40,26 @@ class App extends React.Component {
   }
 
   // AUTH
-  handleLoginButton = () => {
-    this.props.history.push("/login")
+  clearFormData = () => {
+    this.setState({
+      registerFormData: {
+        username: '',
+        email: '',
+        password: ''
+      },
+      loginFormData: {
+        username: '',
+        password: ''
+      }
+    })
   }
 
   handleLogin = async () => {
     const userData = await loginUser(this.state.loginFormData);
     this.setState({
       currentUser: userData,
-      loginFormData: {
-        username: '',
-        password: ''
-      }
     })
+    this.clearFormData()
     this.updatePolls()
   }
 
@@ -62,12 +69,9 @@ class App extends React.Component {
     const userData = await loginUser(this.state.registerFormData);
     this.setState({
       currentUser: userData,
-      registerFormData: {
-        username: '',
-        email: '',
-        password: ''
-      },
+      registerFormView: false
     })
+    this.clearFormData()
     this.updatePolls()
   }
 
@@ -78,7 +82,14 @@ class App extends React.Component {
     })
   }
 
-  handleAuthChange = (ev, formName) => {
+  switchRegisterFormView = () => {
+    this.clearFormData()
+    this.setState(prevState => ({
+      registerFormView: !prevState.registerFormView
+    }))
+  }
+
+  handleFormChange = (ev, formName) => {
     const { name, value } = ev.target;
     this.setState(prevState => ({
       [formName]: {
@@ -102,33 +113,34 @@ class App extends React.Component {
       <div className="App">
         <header>
           <Link to='/'><h1 id='logo'>qwp</h1></Link>
-          <div>
-            {this.state.currentUser
-              ?
-              <>
-                <p>{this.state.currentUser && <Link to='/'>{this.state.currentUser.username}</Link>}</p>
-                <button onClick={this.handleLogout}>logout</button>
-              </>
-              :
-              <Link to='/'><button>login</button></Link>
-            }
-          </div>
+          {this.state.currentUser &&
+            <div>
+              <Link to='/'>{this.state.currentUser.username}</Link>
+              <p><button onClick={this.handleLogout}>logout</button></p>
+            </div>
+          }
         </header>
         <main>
 
-          {/* USERPAGE OR LOGIN VIEW */}
+          {/* USERPAGE VIEW */}
           <Route exact path='/' render={() => (
             this.state.currentUser
               ?
               <UserPage
+                // delete user prop? //
                 user={this.state.currentUser}
                 polls={this.state.currentUserPolls}
+                handleChange={this.handleFormChange}
               />
               :
-              <Login
+              <LoginRegister
                 handleLogin={this.handleLogin}
-                handleChange={this.handleAuthChange}
-                formData={this.state.loginFormData}
+                handleRegister={this.handleRegister}
+                loginFormData={this.state.loginFormData}
+                registerFormData={this.state.registerFormData}
+                handleFormChange={this.handleFormChange}
+                registerFormView={this.state.registerFormView}
+                switchRegisterFormView={this.switchRegisterFormView}
               />
           )} />
 
@@ -140,20 +152,20 @@ class App extends React.Component {
                 pollId={props.match.params.id}
               />
               :
-              this.props.history.push('/')
+              <LoginRegister
+                handleLogin={this.handleLogin}
+                handleRegister={this.handleRegister}
+                loginFormData={this.state.loginFormData}
+                registerFormData={this.state.registerFormData}
+                handleFormChange={this.handleFormChange}
+                registerFormView={this.state.registerFormView}
+                switchRegisterFormView={this.state.switchRegisterFormView}
+              />
           )} />
 
-          {/* REGISTER VIEW HANDLE ANY STRAY URL REQUESTS */}
+          {/* HANDLE STRAY URL REQUEST */}
           <Route exact path='/:route' render={(props) => (
-            props.match.params.route === 'register' && !this.state.currentUser
-              ?
-              <Register
-                handleRegister={this.handleRegister}
-                handleChange={this.handleAuthChange}
-                formData={this.state.registerFormData}
-              />
-              :
-              this.props.history.push('/')
+            this.props.history.push('/')
           )} />
         </main>
       </div>
