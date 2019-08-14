@@ -3,10 +3,10 @@ class UsersController < ApplicationController
 
   # GET /users
   # DON'T NEED
-  # def index
-  #   @users = User.all
-  #   render json: @users, status: :ok
-  # end
+  def index
+    @users = User.all
+    render json: @users, status: :ok
+  end
 
   # GET /user
   def user
@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   end
 
   # GET /users/:id
-  # def show
-  #   render json: @current_user, status: :ok
-  # end
+  def show
+    render json: @current_user, status: :ok
+  end
 
   # POST /users
   def create

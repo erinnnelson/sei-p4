@@ -9,15 +9,15 @@ const api = axios.create({
 // AUTH CALLS
 
 export const loginUser = async (loginData) => {
-  const resp = await api.post('/auth/login', loginData)
-  localStorage.setItem('authToken', resp.data.token);
-  api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
-  return resp.data.user
+  const res = await api.post('/auth/login', loginData)
+  localStorage.setItem('authToken', res.data.token);
+  api.defaults.headers.common.authorization = `Bearer ${res.data.token}`
+  return res.data.user
 }
 
 export const registerUser = async (registerData) => {
-  const resp = await api.post('/users/', { user: registerData })
-  return resp.data
+  const res = await api.post('/users/', { user: registerData })
+  return res.data
 }
 
 export const verifyUser = async () => {
@@ -58,43 +58,48 @@ export const fetchPolls = async () => {
   return res.data;
 };
 
-export const fetchPoll = async (user_id, id) => {
-  const res = await api.get(`/users/${user_id}/polls/${id}`);
+export const fetchPoll = async (id) => {
+  const res = await api.get(`/polls/${id}`);
   return res.data;
 };
 
-export const createPoll = async (user_id, data) => {
-  const res = await api.post(`/users/${user_id}/polls`, data);
+export const createPoll = async (data) => {
+  const res = await api.post(`/polls`, data);
   return res.data;
 };
 
-export const deletePoll = async (user_id, id) => {
-  const res = await api.delete(`/users/${user_id}/polls/${id}`);
+export const deletePoll = async (id) => {
+  const res = await api.delete(`/polls/${id}`);
   return res.data;
 };
 
 // CHOICE CALLS
-export const fetchChoices = async (user_id, poll_id, id) => {
-  const res = await api.get(`/users/${user_id}/polls/${poll_id}/choices/${id}`);
+export const addUserVote = async (poll_id, id) => {
+  const res = await api.get(`/polls/${poll_id}/vote/${id}`);
+  return res.data;
+}
+
+export const fetchChoices = async (poll_id, id) => {
+  const res = await api.get(`/polls/${poll_id}/choices/${id}`);
   return res.data;
 };
 
-export const fetchChoice = async (user_id, poll_id) => {
-  const res = await api.get(`/users/${user_id}/polls/${poll_id}/choices/`);
+export const fetchChoice = async (poll_id) => {
+  const res = await api.get(`/polls/${poll_id}/choices/`);
   return res.data;
 };
 
-export const createChoice = async (user_id, poll_id, data) => {
-  const res = await api.post(`/users/${user_id}/polls${poll_id}/choices`, data);
+export const createChoice = async (poll_id, data) => {
+  const res = await api.post(`/polls${poll_id}/choices`, data);
   return res.data;
 };
 
-export const updateChoice = async (user_id, poll_id, id, data) => {
-  const res = await api.put(`/users/${user_id}/polls/${poll_id}/choices/${id}`, data);
+export const updateChoice = async (poll_id, id, data) => {
+  const res = await api.put(`/polls/${poll_id}/choices/${id}`, data);
   return res.data;
 };
 
-export const deleteChoice = async (user_id, poll_id, id) => {
-  const res = await api.delete(`/users/${user_id}/polls/${poll_id}/choices/${id}`);
+export const deleteChoice = async (poll_id, id) => {
+  const res = await api.delete(`/polls/${poll_id}/choices/${id}`);
   return res.data;
 };

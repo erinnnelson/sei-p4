@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import { loginUser, registerUser, verifyUser, fetchPolls } from './services/api-helper'
 
 import Login from './components/Login'
 import Register from './components/Register'
-import UserPage from './components/UserPage'
-
-import { loginUser, registerUser, verifyUser, fetchPolls } from './services/api-helper'
+import UserPage from './components/user/UserPage'
+import ShowPoll from './components/show/ShowPoll'
 
 import './App.css';
 
@@ -24,7 +24,8 @@ class App extends React.Component {
       loginFormData: {
         username: '',
         password: ''
-      }
+      },
+      showPoll: null
     })
   }
 
@@ -100,6 +101,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>
+          <h1 id='logo'>qwp</h1>
           <div>
             {this.state.currentUser
               ?
@@ -111,7 +113,7 @@ class App extends React.Component {
               <Link to='/'><button>login</button></Link>
             }
           </div>
-          {this.state.currentUser && <Link to={`/`}>profile</Link>}
+          {this.state.currentUser && <Link to='/'>profile</Link>}
         </header>
         <main>
           <Route exact path='/register' render={() => (
@@ -130,18 +132,23 @@ class App extends React.Component {
               />
               :
               <Login
-              handleLogin={this.handleLogin}
-              handleChange={this.handleAuthChange}
-              formData={this.state.loginFormData}
+                handleLogin={this.handleLogin}
+                handleChange={this.handleAuthChange}
+                formData={this.state.loginFormData}
+              />
+          )} />
+          <Route exact path='/poll/:id' render={(props) => (
+            <ShowPoll
+              pollId={props.match.params.id}
             />
           )} />
         </main>
-
-
-
+  
+  
+  
       </div>
-    );
-  }
-}
-
+        );
+      }
+    }
+    
 export default withRouter(App);

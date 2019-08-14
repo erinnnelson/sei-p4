@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :authorize_request, except: :create
+  before_action :authorize_request, except: :show
 
   def index
     @polls = Poll.where(user_id: @current_user.id)

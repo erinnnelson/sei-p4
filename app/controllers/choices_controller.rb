@@ -38,8 +38,16 @@ class ChoicesController < ApplicationController
 
   def vote
     @choice = Choice.find(params[:id])
+    @poll = Poll.find(params[:poll_id])
+    @poll.choices.each do |choice|
+    if 
+      choice.users.include? @current_user
+      render json: false
+      return
+      end
+    end
     @choice.users.push(@current_user)
-    render json: @choice, include: :users, status: :ok
+    render json: @poll, include: {choices: {include: :users}}, status: :ok
   end
 
   private

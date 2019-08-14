@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
+import PollDiv from './PollDiv'
 
 const UserPolls = (props) => {
 
   return (
     <div className="polls-container">
-        {this.props.polls && this.props.polls.map(poll => (
+      {props.polls && props.polls.slice(0).reverse().map(poll => (
+        <Link to={`/poll/${poll.id}`}>
           <div key={poll.id}>
-            <h2>{poll.title}</h2>
-            {poll.choices.map(choice => (
-              <p>{choice.name} - {choice.users.length} votes</p>
-            ))}
-
+            <PollDiv
+              poll={poll}
+            />
           </div>
-        ))}
+        </Link>
+      ))}
     </div>
   );
 }
