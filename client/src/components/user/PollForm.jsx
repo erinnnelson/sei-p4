@@ -34,6 +34,7 @@ const PollForm = (props) => {
       <button onClick={props.handleAddChoice}>Add Option</button>
       {props.newChoiceForms.length > 2 && <button onClick={props.handleRemoveLastChoice}>Remove Option</button>}
       <button onClick={props.resetPollForm}>Reset</button>
+      {props.createPollError && <p>{props.createPollError}</p>}
 
     </div>
   )

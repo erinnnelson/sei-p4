@@ -33,9 +33,11 @@ const UserPage = (props) => {
             handleRemoveSpecificChoice={props.handleRemoveSpecificChoice}
             resetPollForm={props.resetPollForm}
             handleCreatePoll={props.handleCreatePoll}
+            createPollError={props.createPollError}
           />
           <UserPolls
             polls={props.polls}
+            handleDeletePoll={props.handleDeletePoll}
           />
         </div>
       }

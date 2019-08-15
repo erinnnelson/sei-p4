@@ -23,7 +23,7 @@ const renderVoteCount = (choice) => {
 const VoteChoice = (props) => {
   return (
     <div className="vote-choice-container">
-      <p><button onClick={() => (props.userVote(props.choice.id))}>{props.choice.name}</button> {renderVoteCount(props.choice, props.votes)}{votePercentage(props.choice, props.votes)}</p>
+      <p><button onClick={() => (props.userVote(props.choice.id))}>{props.choice.name}</button> {renderVoteCount(props.choice)}{votePercentage(props.choice, props.votes)}</p>
     </div >
   );
 }

@@ -7,7 +7,8 @@ class PollDiv extends React.Component {
     super(props)
     this.state = ({
       votes: 0,
-      choices: []
+      choices: [],
+      deleteCheck: false
     })
   }
 
@@ -26,21 +27,39 @@ class PollDiv extends React.Component {
     })
   }
 
+  deleteCheckSwitch = () => {
+    this.setState(prevState => ({
+      deleteCheck: !prevState.deleteCheck
+    }))
+  }
+
 
   render() {
     return (
       <div className="poll-div-container">
-        <h2>{this.props.poll.title}</h2>
-        {this.props.poll.choices.map(choice => (
-          <div key={choice.id}>
-            <Choice
-              choice={choice}
-              votes={this.state.votes}
-            />
+        <Link to={`/poll/${this.props.poll.id}`}>
+          <h2>{this.props.poll.title}</h2>
+          {this.props.poll.choices.map(choice => (
+            <div key={choice.id}>
+              <Choice
+                choice={choice}
+                votes={this.state.votes}
+              />
 
+            </div>
+          ))}
+          <p>{this.state.votes} total votes</p>
+        </Link>
+        {this.state.deleteCheck
+          ?
+          <div>
+            <p>ARE YOU SURE?</p>
+            <button onClick={() => (this.props.handleDeletePoll(this.props.poll.id))}>DELETE</button>
+            <button onClick={this.deleteCheckSwitch}>cancel</button>
           </div>
-        ))}
-        <p>{this.state.votes} total votes</p>
+          :
+          <button onClick={this.deleteCheckSwitch}>delete</button>
+        }
       </div>
     );
   }

@@ -9,11 +9,10 @@ const UserPolls = (props) => {
       {props.polls && props.polls.slice(0).reverse().map(poll => (
 
         <div key={poll.id}>
-          <Link to={`/poll/${poll.id}`}>
             <PollDiv
-              poll={poll}
+            poll={poll}
+            handleDeletePoll={props.handleDeletePoll}
             />
-          </Link>
         </div>
       ))}
     </div>
