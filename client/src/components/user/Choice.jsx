@@ -14,7 +14,7 @@ const renderVoteInfo = (choice, votes) => {
 const Choice = (props) => {
 
   return (
-    <div className="vote-choice-container">
+    <div className="choice-container">
       <p>{props.choice.name} - {props.choice.users.length} {renderVoteInfo(props.choice, props.votes)} %</p>
     </div>
   );

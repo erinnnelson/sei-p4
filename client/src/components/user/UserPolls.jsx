@@ -5,15 +5,16 @@ import PollDiv from './PollDiv'
 const UserPolls = (props) => {
 
   return (
-    <div className="polls-container">
+    <div className="user-polls-container">
       {props.polls && props.polls.slice(0).reverse().map(poll => (
-        <Link to={`/poll/${poll.id}`}>
-          <div key={poll.id}>
+
+        <div key={poll.id}>
+          <Link to={`/poll/${poll.id}`}>
             <PollDiv
               poll={poll}
             />
-          </div>
-        </Link>
+          </Link>
+        </div>
       ))}
     </div>
   );

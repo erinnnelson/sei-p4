@@ -24,8 +24,22 @@ class App extends React.Component {
         username: '',
         password: ''
       },
+      newPollForm: {
+        title: ''
+      },
+      newChoiceForms: [
+        {
+          name: '',
+          poll_id: ''
+        },
+        {
+          name: '',
+          poll_id: ''
+        }
+      ],
       registerFormView: false,
-      showPoll: null
+      showPoll: null,
+      isUserEdit: false
     })
   }
 
@@ -54,6 +68,16 @@ class App extends React.Component {
     })
   }
 
+  setFormDataUser = () => {
+    this.setState({
+      registerFormData: {
+        username: this.state.currentUser.username,
+        email: this.state.currentUser.email,
+        password: ''
+      },
+    })
+  }
+
   handleLogin = async () => {
     const userData = await loginUser(this.state.loginFormData);
     this.setState({
@@ -79,14 +103,18 @@ class App extends React.Component {
     localStorage.removeItem('authToken');
     this.setState({
       currentUser: null
-    })
+    });
   }
 
   switchRegisterFormView = () => {
     this.clearFormData()
+    this.switchBoolean('registerFormView')
+  }
+
+  switchBoolean = (switchView) => {
     this.setState(prevState => ({
-      registerFormView: !prevState.registerFormView
-    }))
+      [switchView]: !prevState[switchView]
+    }));
   }
 
   handleFormChange = (ev, formName) => {
@@ -99,12 +127,38 @@ class App extends React.Component {
     }));
   }
 
+  handleChoiceChange = (ev, i) => {
+    const { name, value } = ev.target;
+    this.setState(prevState => {
+      const newArr = prevState.newChoiceForms
+      newArr[i][name] = value
+      return {
+        newChoiceForms: newArr
+      }
+    });
+  }
+
+  handleAddChoice = () => {
+    this.setState(prevState => ({
+      newChoiceForms: [...prevState.newChoiceForms, {
+        name: '',
+        poll_id: ''
+      }]
+    }))
+  }
+
+  handleRemoveChoice = () => {
+    this.setState(prevState => ({
+      newChoiceForms: [...prevState.newChoiceForms.slice(0, prevState.newChoiceForms.length - 1)]
+    }))
+  }
+
   updatePolls = async () => {
     if (this.state.currentUser) {
       const polls = await fetchPolls()
       this.setState({
         currentUserPolls: polls,
-      })
+      });
     }
   }
 
@@ -130,7 +184,15 @@ class App extends React.Component {
                 // delete user prop? //
                 user={this.state.currentUser}
                 polls={this.state.currentUserPolls}
-                handleChange={this.handleFormChange}
+                handleFormChange={this.handleFormChange}
+                newPollForm={this.state.newPollForm}
+                newChoiceForms={this.state.newChoiceForms}
+                handleChoiceChange={this.handleChoiceChange}
+                handleAddChoice={this.handleAddChoice}
+                handleRemoveChoice={this.handleRemoveChoice}
+                isEdit={this.state.isUserEdit}
+                updateFormData={this.state.registerFormData}
+                switchBoolean={this.switchBoolean}
               />
               :
               <LoginRegister

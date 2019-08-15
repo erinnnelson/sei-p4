@@ -29,7 +29,7 @@ class PollDiv extends React.Component {
 
   render() {
     return (
-      <div className="poll-container">
+      <div className="poll-div-container">
         <h2>{this.props.poll.title}</h2>
         {this.props.poll.choices.map(choice => (
           <div key={choice.id}>
