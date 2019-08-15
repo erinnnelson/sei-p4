@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { loginUser, registerUser, verifyUser, fetchPolls } from './services/api-helper'
+import { loginUser, registerUser, verifyUser, fetchPolls, createPoll, createChoice } from './services/api-helper'
 
 import UserPage from './components/user/UserPage'
 import ShowPoll from './components/show/ShowPoll'
@@ -25,16 +25,16 @@ class App extends React.Component {
         password: ''
       },
       newPollForm: {
-        title: ''
+        title: '',
+        open: true,
+        user_id: null
       },
       newChoiceForms: [
         {
           name: '',
-          poll_id: ''
         },
         {
           name: '',
-          poll_id: ''
         }
       ],
       registerFormView: false,
@@ -48,6 +48,11 @@ class App extends React.Component {
     if (user) {
       this.setState({
         currentUser: user,
+        newPollForm: {
+          title: '',
+          open: true,
+          user_id: user.id
+        },
       })
       this.updatePolls()
     }
@@ -142,14 +147,21 @@ class App extends React.Component {
     this.setState(prevState => ({
       newChoiceForms: [...prevState.newChoiceForms, {
         name: '',
-        poll_id: ''
       }]
     }))
   }
 
-  handleRemoveChoice = () => {
+  handleRemoveLastChoice = () => {
     this.setState(prevState => ({
       newChoiceForms: [...prevState.newChoiceForms.slice(0, prevState.newChoiceForms.length - 1)]
+    }))
+  }
+
+  handleRemoveSpecificChoice = (i) => {
+    this.setState(prevState => ({
+      newChoiceForms: prevState.newChoiceForms.filter((choice, x) => (
+        i !== x
+      ))
     }))
   }
 
@@ -160,6 +172,37 @@ class App extends React.Component {
         currentUserPolls: polls,
       });
     }
+  }
+
+  resetPollForm = () => {
+    this.setState({
+      newPollForm: {
+        title: '',
+        open: true,
+        user_id: this.state.currentUser.id
+      },
+      newChoiceForms: [
+        {
+          name: '',
+        },
+        {
+          name: '',
+        }
+      ]
+    })
+  }
+
+  handleCreatePoll = async (ev) => {
+    ev.preventDefault();
+    const newPoll = await createPoll(this.state.newPollForm);
+    this.state.newChoiceForms.forEach(async (choice) => {
+      await createChoice(newPoll.id, choice);
+    })
+    this.setState(prevState => ({
+      currentUserPolls: [...prevState.currentUserPolls, newPoll]
+    }))
+    this.resetPollForm();
+    this.props.history.push(`/poll/${newPoll.id}`)
   }
 
   render() {
@@ -189,10 +232,13 @@ class App extends React.Component {
                 newChoiceForms={this.state.newChoiceForms}
                 handleChoiceChange={this.handleChoiceChange}
                 handleAddChoice={this.handleAddChoice}
-                handleRemoveChoice={this.handleRemoveChoice}
+                handleRemoveLastChoice={this.handleRemoveLastChoice}
+                handleRemoveSpecificChoice={this.handleRemoveSpecificChoice}
+                resetPollForm={this.resetPollForm}
                 isEdit={this.state.isUserEdit}
                 updateFormData={this.state.registerFormData}
                 switchBoolean={this.switchBoolean}
+                handleCreatePoll={this.handleCreatePoll}
               />
               :
               <LoginRegister

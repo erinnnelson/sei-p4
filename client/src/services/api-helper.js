@@ -90,7 +90,7 @@ export const fetchChoice = async (poll_id) => {
 };
 
 export const createChoice = async (poll_id, data) => {
-  const res = await api.post(`/polls${poll_id}/choices`, data);
+  const res = await api.post(`/polls/${poll_id}/choices`, { ...data, poll_id: poll_id });
   return res.data;
 };
 

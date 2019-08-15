@@ -15,7 +15,7 @@ class ChoicesController < ApplicationController
   def create
     @choice = Choice.new(choice_params)
     if @choice.save
-      render json: @choice, include: :users, status: :created
+      render json: @choice
     else
       render json: { errors: @choice.errors }, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class ChoicesController < ApplicationController
   def update
     @choice = Choice.find(params[:id])
     if @choice.update(choice_params)
-      render json: @choice, include: :users, status: :ok
+      render json: @choice
     else
       render json: { errors: @choice.errors }, status: :unprocessable_entity
     end
@@ -53,6 +53,6 @@ class ChoicesController < ApplicationController
   private
 
   def choice_params
-    params.require(:Choice).permit(:name, :name, :poll_id)
+    params.require(:choice).permit(:name, :poll_id)
   end
 end

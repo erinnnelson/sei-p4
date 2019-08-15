@@ -5,7 +5,7 @@ import UserPolls from './UserPolls'
 const PollForm = (props) => {
   return (
     <div className="poll-form">
-      <form>
+      <form onSubmit={(ev) => (props.handleCreatePoll(ev))}>
         <input
           type='text'
           name='title'
@@ -16,21 +16,24 @@ const PollForm = (props) => {
           }}
         />
         {props.newChoiceForms.map((choice, i) => (
-          <input
-            key={i}
-            type='text'
-            name='name'
-            placeholder={`Option ${i + 1}`}
-            value={choice.name}
-            onChange={(ev) => {
-              props.handleChoiceChange(ev, i)
-            }}
-          />
+          <div key={i}>
+            <input
+              type='text'
+              name='name'
+              placeholder={`Option ${i + 1}`}
+              value={choice.name}
+              onChange={(ev) => {
+                props.handleChoiceChange(ev, i)
+              }}
+            />
+            {props.newChoiceForms.length > 2 && <div className='delete-choice-x' onClick={() => (props.handleRemoveSpecificChoice(i))}>X</div>}
+          </div>
         ))}
+        <button>Create Poll</button>
       </form>
       <button onClick={props.handleAddChoice}>Add Option</button>
-      <button onClick={props.handleRemoveChoice}>Remove Option</button>
-      <button onClick={props.handleRemoveChoice}>Reset</button>
+      {props.newChoiceForms.length > 2 && <button onClick={props.handleRemoveLastChoice}>Remove Option</button>}
+      <button onClick={props.resetPollForm}>Reset</button>
 
     </div>
   )

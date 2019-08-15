@@ -29,7 +29,10 @@ const UserPage = (props) => {
             newChoiceForms={props.newChoiceForms}
             handleChoiceChange={props.handleChoiceChange}
             handleAddChoice={props.handleAddChoice}
-            handleRemoveChoice={props.handleRemoveChoice}
+            handleRemoveLastChoice={props.handleRemoveLastChoice}
+            handleRemoveSpecificChoice={props.handleRemoveSpecificChoice}
+            resetPollForm={props.resetPollForm}
+            handleCreatePoll={props.handleCreatePoll}
           />
           <UserPolls
             polls={props.polls}
