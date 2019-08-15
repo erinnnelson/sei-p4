@@ -15,7 +15,7 @@ class ChoicesController < ApplicationController
   def create
     @choice = Choice.new(choice_params)
     if @choice.save
-      render json: @choice
+      render json: @choice, include: :users
     else
       render json: { errors: @choice.errors }, status: :unprocessable_entity
     end

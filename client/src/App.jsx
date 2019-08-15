@@ -228,10 +228,11 @@ class App extends React.Component {
   handleCreatePoll = async (ev) => {
     ev.preventDefault();
     if (this.handleCheckPollFormData()) {
-      const newPoll = await createPoll(this.state.newPollForm);
-      await this.state.newChoiceForms.forEach(async (choice) => {
-        await createChoice(newPoll.id, choice);
-      })
+      let newPoll = await createPoll(this.state.newPollForm);
+      const allChoices = await Promise.all(this.state.newChoiceForms.map(async (choice) => {
+        return await createChoice(newPoll.id, choice);
+      }))
+      newPoll = { ...newPoll, choices: allChoices }
       this.setState(prevState => ({
         currentUserPolls: [...prevState.currentUserPolls, newPoll]
       }))
