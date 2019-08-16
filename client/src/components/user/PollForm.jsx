@@ -5,6 +5,7 @@ import UserPolls from './UserPolls'
 const PollForm = (props) => {
   return (
     <div className="poll-form">
+      <h2>Create a new poll!</h2>
       <form onSubmit={(ev) => (props.handleCreatePoll(ev))}>
         <input
           type='text'
@@ -25,6 +26,10 @@ const PollForm = (props) => {
               onChange={(ev) => {
                 props.handleChoiceChange(ev, i)
               }}
+            />
+            <input
+              type="hidden"
+              value={choice.option_position}
             />
             {props.newChoiceForms.length > 2 && <div className='delete-choice-x' onClick={() => (props.handleRemoveSpecificChoice(i))}>X</div>}
           </div>

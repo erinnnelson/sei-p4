@@ -7,15 +7,19 @@ class PollDiv extends React.Component {
     super(props)
     this.state = ({
       votes: 0,
-      choices: [],
       deleteCheck: false
     })
   }
 
   componentDidMount = () => {
     this.voteCount();
+  }
 
-
+  reorderedChoices = () => {
+    const orderedChoices = this.props.poll.choices.sort((a, b) => (
+      (a.option_position > b.option_position) ? 1 : -1
+    ))
+    return orderedChoices
   }
 
   voteCount = () => {
@@ -39,7 +43,7 @@ class PollDiv extends React.Component {
       <div className="poll-div-container">
         <Link to={`/poll/${this.props.poll.id}`}>
           <h2>{this.props.poll.title}</h2>
-          {this.props.poll.choices.map(choice => (
+          {this.reorderedChoices().map(choice => (
             <div key={choice.id}>
               <Choice
                 choice={choice}

@@ -53,6 +53,6 @@ class ChoicesController < ApplicationController
   private
 
   def choice_params
-    params.require(:choice).permit(:name, :poll_id)
+    params.require(:choice).permit(:name, :option_position, :poll_id)
   end
 end

@@ -10,6 +10,7 @@ class ShowPoll extends React.Component {
     super(props)
     this.state = ({
       poll: null,
+      choices: [],
       votes: 0,
       alreadyVoted: false
     })
@@ -17,8 +18,12 @@ class ShowPoll extends React.Component {
 
   componentDidMount = async () => {
     const poll = await fetchPoll(this.props.pollId)
+    const orderedChoices = poll.choices.sort((a, b) => (
+      (a.option_position > b.option_position) ? 1 : -1
+    ))
     this.setState({
-      poll: poll
+      poll: poll,
+      choices: orderedChoices
     })
     this.voteCount();
   }
@@ -41,8 +46,12 @@ class ShowPoll extends React.Component {
   userVote = async (choiceId) => {
     const updatedPoll = await addUserVote(this.state.poll.id, choiceId)
     if (updatedPoll) {
+      const orderedChoices = updatedPoll.choices.sort((a, b) => (
+        (a.option_position > b.option_position) ? 1 : -1
+      ))
       this.setState({
         poll: updatedPoll,
+        choices: orderedChoices,
         votes: 0
       })
       this.voteCount();
@@ -58,7 +67,7 @@ class ShowPoll extends React.Component {
     return (
       <div className="show-poll-container">
         <h2>{this.state.poll && this.state.poll.title}</h2>
-        {this.state.poll && this.state.poll.choices.map(choice => (
+        {this.state.choices.map(choice => (
           <div key={choice.id}>
             <VoteChoice
               choice={choice}

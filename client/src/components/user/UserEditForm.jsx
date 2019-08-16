@@ -5,7 +5,7 @@ const UserEditForm = (props) => {
   return (
     <div className="user-edit-form-container">
       <hr />
-      <form onSubmit={props.handleRegister} >
+      <form onSubmit={(ev) => (props.handleRegister(ev))} >
         <p>update username</p>
         <input
           name='username'
@@ -33,7 +33,7 @@ const UserEditForm = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'registerFormData')
           }} />
-        <button>Sign Up</button>
+        <button>update!</button>
       </form>
     </div>
   );

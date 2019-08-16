@@ -32,11 +32,14 @@ class App extends React.Component {
       newChoiceForms: [
         {
           name: '',
+          option_position: 0
         },
         {
           name: '',
+          option_position: 1
         }
       ],
+      stagedChoices: [],
       registerFormView: false,
       showPoll: null,
       isUserEdit: false,
@@ -88,6 +91,7 @@ class App extends React.Component {
     const userData = await loginUser(this.state.loginFormData);
     this.setState({
       currentUser: userData,
+      isUserEdit: false
     })
     this.clearFormData()
     this.updatePolls()
@@ -113,15 +117,36 @@ class App extends React.Component {
     this.props.history.push(`/`)
   }
 
+  switchBoolean = (switchView) => {
+    this.setState(prevState => ({
+      [switchView]: !prevState[switchView]
+    }));
+  }
+
   switchRegisterFormView = () => {
     this.clearFormData()
     this.switchBoolean('registerFormView')
   }
 
-  switchBoolean = (switchView) => {
-    this.setState(prevState => ({
-      [switchView]: !prevState[switchView]
-    }));
+  toggleEditMode = () => {
+    this.switchBoolean('isUserEdit')
+    this.state.isUserEdit
+      ?
+      this.setState({
+        registerFormData: {
+          username: '',
+          email: '',
+          password: ''
+        }
+      })
+      :
+      this.setState({
+        registerFormData: {
+          username: this.state.currentUser.username,
+          email: this.state.currentUser.email,
+          password: ''
+        }
+      })
   }
 
   handleFormChange = (ev, formName) => {
@@ -145,10 +170,23 @@ class App extends React.Component {
     });
   }
 
+  reorderChoicePositions = () => {
+    this.setState(prevState => {
+      const newArr = prevState.newChoiceForms
+      newArr.map((choice, i) => {
+        choice.option_position = i
+      })
+      return {
+        newChoiceForms: newArr
+      }
+    });
+  }
+
   handleAddChoice = () => {
     this.setState(prevState => ({
       newChoiceForms: [...prevState.newChoiceForms, {
         name: '',
+        option_position: this.state.newChoiceForms.length
       }]
     }))
   }
@@ -165,6 +203,7 @@ class App extends React.Component {
         i !== x
       ))
     }))
+    this.reorderChoicePositions()
   }
 
   updatePolls = async () => {
@@ -288,6 +327,8 @@ class App extends React.Component {
                 handleCreatePoll={this.handleCreatePoll}
                 createPollError={this.state.createPollError}
                 handleDeletePoll={this.handleDeletePoll}
+                toggleEditMode={this.toggleEditMode}
+                handleUserUpdate={this.handleUserUpdate}
               />
               :
               <LoginRegister
