@@ -44,8 +44,10 @@ export const createUser = async (data) => {
 };
 
 export const updateUser = async (id, data) => {
-  const res = await api.get(`/users/${id}`, data);
-  return res.data
+  const res = await api.put(`/users/${id}`, data);
+  localStorage.setItem('authToken', res.data.token);
+  api.defaults.headers.common.authorization = `Bearer ${res.data.token}`
+  return res.data.user
 };
 
 export const deleteUser = async (id) => {
@@ -91,15 +93,5 @@ export const fetchChoice = async (poll_id) => {
 
 export const createChoice = async (poll_id, data) => {
   const res = await api.post(`/polls/${poll_id}/choices`, { ...data, poll_id: poll_id });
-  return res.data;
-};
-
-export const updateChoice = async (poll_id, id, data) => {
-  const res = await api.put(`/polls/${poll_id}/choices/${id}`, data);
-  return res.data;
-};
-
-export const deleteChoice = async (poll_id, id) => {
-  const res = await api.delete(`/polls/${poll_id}/choices/${id}`);
   return res.data;
 };

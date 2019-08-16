@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { loginUser, registerUser, verifyUser, fetchPolls, createPoll, deletePoll, createChoice } from './services/api-helper'
+import { loginUser, registerUser, verifyUser, fetchPolls, updateUser, deleteUser, createPoll, deletePoll, createChoice } from './services/api-helper'
+import decode from 'jwt-decode'
 
 import UserPage from './components/user/UserPage'
 import ShowPoll from './components/show/ShowPoll'
@@ -23,6 +24,10 @@ class App extends React.Component {
       loginFormData: {
         username: '',
         password: ''
+      },
+      updateUserFormData: {
+        username: '',
+        email: ''
       },
       newPollForm: {
         title: '',
@@ -77,22 +82,12 @@ class App extends React.Component {
     })
   }
 
-  setFormDataUser = () => {
-    this.setState({
-      registerFormData: {
-        username: this.state.currentUser.username,
-        email: this.state.currentUser.email,
-        password: ''
-      },
-    })
-  }
-
   handleLogin = async () => {
     const userData = await loginUser(this.state.loginFormData);
     this.setState({
       currentUser: userData,
-      isUserEdit: false
     })
+    this.resetUserEdit()
     this.clearFormData()
     this.updatePolls()
   }
@@ -105,6 +100,7 @@ class App extends React.Component {
       currentUser: userData,
       registerFormView: false
     })
+    this.resetUserEdit()
     this.clearFormData()
     this.updatePolls()
   }
@@ -133,18 +129,16 @@ class App extends React.Component {
     this.state.isUserEdit
       ?
       this.setState({
-        registerFormData: {
+        updateUserFormData: {
           username: '',
           email: '',
-          password: ''
         }
       })
       :
       this.setState({
-        registerFormData: {
+        updateUserFormData: {
           username: this.state.currentUser.username,
           email: this.state.currentUser.email,
-          password: ''
         }
       })
   }
@@ -291,14 +285,35 @@ class App extends React.Component {
     }))
   }
 
+  resetUserEdit = () => {
+    this.setState({
+      isUserEdit: false
+    })
+  }
+
+  handleUpdateUser = async (ev) => {
+    ev.preventDefault();
+    const updatedUser = await updateUser(this.state.currentUser.id, this.state.updateUserFormData)
+    // const userData = await loginUser(this.state.registerFormData);
+    this.setState({
+      currentUser: updatedUser,
+    })
+    this.resetUserEdit();
+  }
+
+  handleDeleteUser = async () => {
+    await deleteUser(this.state.currentUser.id)
+    this.handleLogout()
+  }
+
   render() {
     return (
       <div className="App">
         <header>
-          <Link to='/'><h1 id='logo'>qwp</h1></Link>
+          <Link to='/'><h1 onClick={this.resetUserEdit} id='logo'>qwp</h1></Link>
           {this.state.currentUser &&
             <div>
-              <Link to='/'>{this.state.currentUser.username}</Link>
+              <Link to='/'><p onClick={this.resetUserEdit}>{this.state.currentUser.username}</p></Link>
               <p><button onClick={this.handleLogout}>logout</button></p>
             </div>
           }
@@ -322,13 +337,14 @@ class App extends React.Component {
                 handleRemoveSpecificChoice={this.handleRemoveSpecificChoice}
                 resetPollForm={this.resetPollForm}
                 isEdit={this.state.isUserEdit}
-                updateFormData={this.state.registerFormData}
+                updateUserFormData={this.state.updateUserFormData}
                 switchBoolean={this.switchBoolean}
                 handleCreatePoll={this.handleCreatePoll}
                 createPollError={this.state.createPollError}
                 handleDeletePoll={this.handleDeletePoll}
                 toggleEditMode={this.toggleEditMode}
-                handleUserUpdate={this.handleUserUpdate}
+                handleUpdateUser={this.handleUpdateUser}
+                handleDeleteUser={this.handleDeleteUser}
               />
               :
               <LoginRegister

@@ -6,10 +6,11 @@ const UserEdit = (props) => {
   return (
     <div className="user-edit-container">
       <UserEditForm
-          handleUpdate={props.handleUpdate}
+          handleUpdateUser={props.handleUpdateUser}
           handleChange={props.handleFormChange}
           formData={props.formData}
-        />
+      />
+      <button onClick={props.handleDeleteUser}>Delete Account</button>
     </div>
   )
 }

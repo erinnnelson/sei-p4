@@ -31,7 +31,8 @@ class UsersController < ApplicationController
   # PUT /users/:id
   def update
     if @current_user.update(user_params)
-      render json: @user, status: :ok
+      token = encode(id: @current_user.id, username: @current_user.username)
+      render json: {token: token, user: @current_user}, status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
   # DELETE /users/:id
   def destroy
     @current_user.destroy
-    render json: @dojo, status: :ok
+    render json: @current_user, status: :ok
   end
 
   def verify

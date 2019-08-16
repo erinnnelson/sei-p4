@@ -16,10 +16,11 @@ const UserPage = (props) => {
           <p>hello</p>
           <UserEdit
             handleFormChange={props.handleFormChange}
-            formData={props.updateFormData}
-            handleUpdate={props.handleUserUpdate}
+            formData={props.updateUserFormData}
+            handleUpdateUser={props.handleUpdateUser}
+            handleDeleteUser={props.handleDeleteUser}
           />
-          <button onClick={props.toggleEditMode}>cancel</button>
+          <button onClick={() => (props.switchBoolean('isUserEdit'))}>cancel</button>
         </div>
         :
         <div>

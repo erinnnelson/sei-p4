@@ -13,6 +13,6 @@ class AuthenticationController < ApplicationController
   private
 
   def login_params
-    params.permit(:username, :password)
+    params.permit(:id, :username, :password)
   end
 end
