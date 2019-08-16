@@ -62,6 +62,16 @@ class App extends React.Component {
           open: true,
           user_id: user.id
         },
+        newChoiceForms: [
+          {
+            name: '',
+            option_position: 0
+          },
+          {
+            name: '',
+            option_position: 1
+          }
+        ]
       })
       this.updatePolls()
     }
@@ -90,6 +100,23 @@ class App extends React.Component {
     this.resetUserEdit()
     this.clearFormData()
     this.updatePolls()
+    this.setState({
+      newPollForm: {
+        title: '',
+        open: true,
+        user_id: this.state.currentUser.id
+      },
+      newChoiceForms: [
+        {
+          name: '',
+          option_position: 0
+        },
+        {
+          name: '',
+          option_position: 1
+        }
+      ]
+    })
   }
 
   handleRegister = async (ev) => {
@@ -103,6 +130,23 @@ class App extends React.Component {
     this.resetUserEdit()
     this.clearFormData()
     this.updatePolls()
+    this.setState({
+      newPollForm: {
+        title: '',
+        open: true,
+        user_id: this.state.currentUser.id
+      },
+      newChoiceForms: [
+        {
+          name: '',
+          option_position: 0
+        },
+        {
+          name: '',
+          option_position: 1
+        }
+      ]
+    })
   }
 
   handleLogout = () => {
