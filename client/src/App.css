@@ -1,8 +1,29 @@
 .App {
   text-align: center;
+  height: 100vh;
+  background: linear-gradient(314deg, #3082c5, #9d46c5, #2590e8, #5ddd9f);
+  background-size: 600% 600%;
+  animation: AnimationName 60s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 13%}
+  50%{background-position:100% 88%}
+  100%{background-position:0% 13%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 13%}
+  50%{background-position:100% 88%}
+  100%{background-position:0% 13%}
+}
+@keyframes AnimationName { 
+  0%{background-position:0% 13%}
+  50%{background-position:100% 88%}
+  100%{background-position:0% 13%}
 }
 
 #logo {
   font-family: 'Wallpoet', cursive;
   font-size: 20px;
+  margin: 0;
 }
