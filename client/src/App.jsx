@@ -164,6 +164,7 @@ class App extends React.Component {
   }
 
   switchRegisterFormView = () => {
+    console.log('hello')
     this.clearFormData()
     this.switchBoolean('registerFormView')
   }
@@ -417,7 +418,7 @@ class App extends React.Component {
                 registerFormData={this.state.registerFormData}
                 handleFormChange={this.handleFormChange}
                 registerFormView={this.state.registerFormView}
-                switchRegisterFormView={this.state.switchRegisterFormView}
+                switchRegisterFormView={this.switchRegisterFormView}
               />
           )} />
 
