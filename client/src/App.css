@@ -1,29 +1,117 @@
-.App {
-  text-align: center;
+body {
+  width: 100vw;
   height: 100vh;
-  background: linear-gradient(314deg, #3082c5, #9d46c5, #2590e8, #5ddd9f);
-  background-size: 600% 600%;
-  animation: AnimationName 60s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #a7a7a7
+  /* background: linear-gradient(315deg, #53e285, #3082c5, #9d46c5, #6f54db, #47a1ea, #5ddd9f);
+  background-size: 1000% 1000%;
+  animation: BackgroundGradient 200s ease infinite; */
 }
 
-@-webkit-keyframes AnimationName {
+/* @keyframes BackgroundGradient { 
   0%{background-position:0% 13%}
   50%{background-position:100% 88%}
   100%{background-position:0% 13%}
+} */
+
+.app {
+  display: inline-block;
+  background: #fffffa;
+  margin: auto;
+  height: 101vh;
+  min-width: 375px;
+  max-width: 600px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  font-family: 'Baloo Bhai', cursive;
 }
-@-moz-keyframes AnimationName {
-  0%{background-position:0% 13%}
-  50%{background-position:100% 88%}
-  100%{background-position:0% 13%}
+
+.app::-webkit-scrollbar {
+  display: none;
 }
-@keyframes AnimationName { 
-  0%{background-position:0% 13%}
-  50%{background-position:100% 88%}
-  100%{background-position:0% 13%}
+
+header {
+  margin: 0;
+  padding: 70px 0 0 0;
+  background: linear-gradient(165deg, #62ebab, #1ea57d);
+  height: 90px;
 }
 
 #logo {
-  font-family: 'Wallpoet', cursive;
-  font-size: 20px;
+  font-size: 35px;
   margin: 0;
+  color: #fffffa;
+}
+
+#logo-link {
+  text-decoration: none;
+  
+}
+
+/* #logo-link:hover {
+  text-decoration: none;
+} */
+
+/* #logo-link:active {
+  text-decoration: none;
+} */
+
+/* #logo-link:visited {
+  text-decoration: none;
+} */
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 3% 0 65%
+}
+
+nav button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+button {
+  outline: none;
+}
+
+nav button, nav p {
+  color: #fffffa;
+  line-height: 0;
+}
+
+nav button:hover, nav p:hover {
+  cursor: pointer;
+}
+
+nav button:active, nav p:active {
+  opacity: .5;
+}
+
+#nav-username-link {
+  text-decoration: none;
+}
+
+/* #nav-username-link:active {
+  text-decoration: none;
+} */
+
+#login-register-container {
+  margin: 70px auto;
+}
+
+#login-container, #register-container {
+  background: linear-gradient(165deg, #62ebab, #1ea57d);
+  box-shadow: 2px 5px 10px rgb(186, 186, 186);
+  width: 250px;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

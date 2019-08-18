@@ -4,8 +4,7 @@ import { Link, Route } from 'react-router-dom';
 const Login = (props) => {
 
   return (
-    <div className="login-container">
-      <hr />
+    <div id='login-container'>
       <form onSubmit={(ev) => {
         ev.preventDefault();
         props.handleLogin();}} >
@@ -17,6 +16,7 @@ const Login = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'loginFormData')
           }} />
+        <br />
         <input
           name='password'
           type='password'
@@ -25,6 +25,7 @@ const Login = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'loginFormData')
           }} />
+        <br />
         <button>Sign In</button>
       </form>
     </div>

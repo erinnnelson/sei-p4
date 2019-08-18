@@ -353,15 +353,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <header>
-          <Link to='/'><h1 onClick={this.resetUserEdit} id='logo'>qwp</h1></Link>
-          {this.state.currentUser &&
-            <div>
-              <Link to='/'><p onClick={this.resetUserEdit}>{this.state.currentUser.username}</p></Link>
-              <p><button onClick={this.handleLogout}>logout</button></p>
-            </div>
-          }
+          <Link to='/' id='logo-link'><h1 onClick={this.resetUserEdit} id='logo'>qwp</h1></Link>
+            {this.state.currentUser &&
+              <nav>
+                <Link to='/' id='nav-username-link'><p id='nav-username' onClick={this.resetUserEdit}>{this.state.currentUser.username}</p></Link>
+                <button id='nav-logout' onClick={this.handleLogout}>logout</button>
+              </nav>
+            }
         </header>
         <main>
 
@@ -370,8 +370,6 @@ class App extends React.Component {
             this.state.currentUser
               ?
               <UserPage
-                // delete user prop? //
-                user={this.state.currentUser}
                 polls={this.state.currentUserPolls}
                 handleFormChange={this.handleFormChange}
                 newPollForm={this.state.newPollForm}

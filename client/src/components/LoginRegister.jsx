@@ -8,7 +8,7 @@ import Register from './Register'
 const LoginRegister = (props) => {
 
   return (
-    <div>
+    <div id='login-register-container'>
       {props.registerFormView
         ?
         <Register
@@ -25,9 +25,9 @@ const LoginRegister = (props) => {
       <button onClick={props.switchRegisterFormView}>
         {props.registerFormView
           ?
-          'Login'
+          'Use Existing Account'
           :
-          'Register'
+          'Register New Account'
       }
       </button>
     </div>

@@ -3,8 +3,7 @@ import React from 'react';
 const Register = (props) => {
 
   return (
-    <div className="register-container">
-      <hr />
+    <div id='register-container'>
       <form onSubmit={props.handleRegister} >
         <input
           name='username'
@@ -14,6 +13,7 @@ const Register = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'registerFormData')
           }} />
+        <br />
         <input
           name='email'
           type='text'
@@ -22,6 +22,7 @@ const Register = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'registerFormData')
           }} />
+        <br />
         <input
           name='password'
           type='password'
@@ -30,6 +31,7 @@ const Register = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'registerFormData')
           }} />
+        <br />
         <button>Sign Up</button>
       </form>
     </div>
