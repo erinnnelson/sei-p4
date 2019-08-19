@@ -29,6 +29,7 @@ button, input {
   margin: 0 auto;
   margin-bottom: -15px;
   border-radius: 5px;
+  padding-bottom: 40px;
 
 }
 
@@ -158,11 +159,11 @@ nav button:active, nav p:active {
 }
 
 #login-inputs {
-  height: 176px;
+  height: 136px;
 }
 
 #register-inputs {
-  height: 244px;
+  height: 204px;
 }
 
 #button-login-register-switch {
@@ -244,34 +245,46 @@ nav button:active, nav p:active {
   color: #12684e;
 }
 
+.add-remove-option-container{
+  margin: 7px 10px;
+}
+
 .buttons-add-remove-options {
   width: 30px;
   height: 30px;
   font-size: 30px;
   line-height: 30px;
   border-radius: 100%;
-  margin: 5px 10px;
-  border: 1px solid black;
+  margin: 0;
+  border: 1px solid #178564;
   user-select: none;
+  color: #0d4635;
+  background: linear-gradient(165deg, #62ebab, #1ea57d);
+  cursor: pointer;
+}
+
+#button-remove-option-grey {
+  opacity: .3;
+}
+
+#button-remove-option:active, #button-add-option:active {
+  background: #12684e;
+  color: #031a13;
 }
 
 #poll-form-inputs {
-  min-height: 230px;
+  min-height: 190px;
 }
 
 .delete-choice-x {
   opacity: .3;
-  margin: 32px 0 0 5px;
+  margin: 34px 0 0 3px;
   cursor: pointer;
   position: absolute;
-}
-
-.delete-choice-x:hover {
-  opacity: .8;
-  color: rgb(196, 43, 43);
+  user-select: none;
 }
 
 .delete-choice-x:active {
-  opacity: .2;
-  color: rgb(0, 0, 0);
+  opacity: .8;
+  color: rgb(196, 43, 43);
 }

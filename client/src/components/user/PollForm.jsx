@@ -43,10 +43,16 @@ const PollForm = (props) => {
         <div id='add-remove-options-container'>
           {props.newChoiceForms.length > 2
             ?
-            <p id='button-remove-option-grey' className='buttons-add-remove-options' onClick={props.handleRemoveLastChoice}>-</p>
+            <div className='add-remove-option-container'>
+              <p id='button-remove-option' className='buttons-add-remove-options' onClick={props.handleRemoveLastChoice}>-</p>
+            </div>
             :
-            <p id='button-remove-option' className='buttons-add-remove-options'>-</p>}
-          <p id='button-add-option' className='buttons-add-remove-options' onClick={props.handleAddChoice}>+</p>
+            <div className='add-remove-option-container'>
+              <p id='button-remove-option-grey' className='buttons-add-remove-options'>-</p>
+            </div>}
+          <div className='add-remove-option-container'>
+            <p id='button-add-option' className='buttons-add-remove-options' onClick={props.handleAddChoice}>+</p>
+          </div>
         </div>
       </div>
       {props.createPollError && <p>{props.createPollError}</p>}
