@@ -6,8 +6,9 @@ const Login = (props) => {
   return (
     <div id='login-container'>
       <form onSubmit={(ev) => {
-        ev.preventDefault();
-        props.handleLogin();}} >
+        props.handleLogin(ev);
+      }} >
+        <div id='login-inputs' className='form-divs'>
         <input
           name='username'
           type='text'
@@ -25,9 +26,10 @@ const Login = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'loginFormData')
           }} />
-        <br />
-        <button>Sign In</button>
+        </div>
+        <button className='buttons-form-submit'>SIGN IN</button>
       </form>
+      <p>{props.loginRegisterError}</p>
     </div>
   );
 }

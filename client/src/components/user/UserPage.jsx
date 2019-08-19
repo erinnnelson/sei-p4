@@ -9,11 +9,10 @@ import PollForm from './PollForm'
 const UserPage = (props) => {
   return (
     <div className="user-page-container">
-      {!props.isEdit && <button onClick={props.toggleEditMode}>edit profile</button>}
+      {!props.isEdit && <button id='button-profile-edit' onClick={props.toggleEditMode}>edit profile</button>}
       {props.isEdit
         ?
         <div>
-          <p>hello</p>
           <UserEdit
             handleFormChange={props.handleFormChange}
             formData={props.updateUserFormData}

@@ -15,19 +15,22 @@ const LoginRegister = (props) => {
           handleRegister={props.handleRegister}
           handleChange={props.handleFormChange}
           formData={props.registerFormData}
+          loginRegisterError={props.loginRegisterError}
         />
         :
         <Login
           handleLogin={props.handleLogin}
           handleChange={props.handleFormChange}
-          formData={props.loginFormData} />
+          formData={props.loginFormData}
+          loginRegisterError={props.loginRegisterError}
+        />
       }
-      <button onClick={props.switchRegisterFormView}>
+      <button id='button-login-register-switch' onClick={props.switchRegisterFormView}>
         {props.registerFormView
           ?
-          'Use Existing Account'
+          'USE EXISTING ACCOUNT'
           :
-          'Register New Account'
+          'REGISTER NEW ACCOUNT'
       }
       </button>
     </div>

@@ -1,3 +1,5 @@
+/* GENERAL STYLING */
+
 body {
   width: 100vw;
   height: 100vh;
@@ -5,17 +7,60 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #a7a7a7
-  /* background: linear-gradient(315deg, #53e285, #3082c5, #9d46c5, #6f54db, #47a1ea, #5ddd9f);
+  background: linear-gradient(315deg, #a7a7a7, #b2bea7, #bba2a0, #a299aa, #acaca2, #a7a7a7);
   background-size: 1000% 1000%;
-  animation: BackgroundGradient 200s ease infinite; */
+  animation: BackgroundGradient 200s ease infinite;
 }
 
-/* @keyframes BackgroundGradient { 
+button, input {
+  outline: none;
+}
+
+.form-divs {
+  background: linear-gradient(165deg, #62ebab, #1ea57d);
+  box-shadow: 2px 5px 10px rgb(186, 186, 186);
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: -15px;
+  border-radius: 5px;
+
+}
+
+.form-divs input{
+  line-height: 30px;
+  font-size: 20px;
+  width: 200px;
+  margin: 25px 0 0 0;
+  background: #fffffa;
+  border-radius: 5px;
+  padding-left: 3px;
+}
+
+.buttons-form-submit {
+  margin-top: -20px;
+  font-size: 24px;
+  width: 120px;
+  height: 40px;
+  border-radius: 80px;
+  box-shadow: 2px 5px 10px rgb(186, 186, 186);
+  border: none;
+  color: #1ea57d;
+  font-weight: bold;
+  background: #fffffa;
+  font-family: 'Baloo Bhai', cursive;
+  line-height: 40px;
+}
+
+.buttons-form-submit:active {
+  color: #12684e;
+  background: #cececa;
+}
+
+@keyframes BackgroundGradient { 
   0%{background-position:0% 13%}
   50%{background-position:100% 88%}
   100%{background-position:0% 13%}
-} */
+}
 
 .app {
   display: inline-block;
@@ -34,16 +79,25 @@ body {
   display: none;
 }
 
+/* HEADER */
+
 header {
   margin: 0;
-  padding: 70px 0 0 0;
+  padding: 0;
   background: linear-gradient(165deg, #62ebab, #1ea57d);
-  height: 90px;
+  height: 145px;
+}
+
+#header-overlay {
+  height: 140px;
+  background: url(./assets/qwp.png) no-repeat center center;;
+  background-size: 300px 100px;
 }
 
 #logo {
   font-size: 35px;
   margin: 0;
+  padding: 60px 0 0 0;
   color: #fffffa;
 }
 
@@ -52,22 +106,9 @@ header {
   
 }
 
-/* #logo-link:hover {
-  text-decoration: none;
-} */
-
-/* #logo-link:active {
-  text-decoration: none;
-} */
-
-/* #logo-link:visited {
-  text-decoration: none;
-} */
-
 nav {
   display: flex;
-  justify-content: space-around;
-  margin: 0 3% 0 65%
+  justify-content: flex-end;
 }
 
 nav button {
@@ -76,13 +117,10 @@ nav button {
   padding: 0;
 }
 
-button {
-  outline: none;
-}
-
 nav button, nav p {
   color: #fffffa;
   line-height: 0;
+  margin-right: 10px;
 }
 
 nav button:hover, nav p:hover {
@@ -97,21 +135,87 @@ nav button:active, nav p:active {
   text-decoration: none;
 }
 
-/* #nav-username-link:active {
-  text-decoration: none;
-} */
+/* SIGN-IN AND REGISTER */
 
 #login-register-container {
   margin: 70px auto;
 }
 
 #login-container, #register-container {
-  background: linear-gradient(165deg, #62ebab, #1ea57d);
+  height: 300px;
+}
+
+#login-inputs {
+  height: 170px;
+}
+
+#register-inputs {
+  height: 230px;
+}
+
+#button-sign-up, #button-sign-in {
+  margin-top: -20px;
+  font-size: 24px;
+  width: 120px;
+  height: 40px;
+  border-radius: 80px;
   box-shadow: 2px 5px 10px rgb(186, 186, 186);
+  border: none;
+  color: #1ea57d;
+  font-weight: bold;
+  background: #fffffa;
+  font-family: 'Baloo Bhai', cursive;
+  line-height: 40px;
+}
+
+#button-sign-up:active, #button-sign-in:active {
+  color: #12684e;
+  background: #cececa;
+}
+
+#button-login-register-switch {
   width: 250px;
-  height: 400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 40px;
+  border: none;
+  background: linear-gradient(165deg, #62ebab, #1ea57d);
+  border-radius: 5px;
+  font-size: 20px;
+  color: #fffffa;
+  box-shadow: 2px 5px 10px rgb(186, 186, 186);
+  font-family: 'Baloo Bhai', cursive;
+  line-height: 40px;
+}
+
+#button-login-register-go:active {
+  background: #12684e;
+  color: #cececa;
+}
+
+/* USER PAGE */
+
+#button-profile-edit {
+  display: block;
+  margin: 2px 5px 0 auto;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Baloo Bhai', cursive;
+  color: #1ea57d;
+
+}
+
+#button-profile-edit:hover {
+  cursor: pointer;
+}
+
+#button-profile-edit:active {
+  color: #12684e;
+}
+
+#poll-form-header {
+  color: #2dc799;
+}
+
+#poll-form-inputs {
+  min-height: 230px;
 }

@@ -4,9 +4,8 @@ const UserEditForm = (props) => {
 
   return (
     <div className="user-edit-form-container">
-      <hr />
       <form onSubmit={(ev) => (props.handleUpdateUser(ev))} >
-        <p>update username</p>
+        <p>Update Profile</p>
         <input
           name='username'
           type='text'
@@ -15,7 +14,7 @@ const UserEditForm = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'updateUserFormData')
           }} />
-        <p>update email</p>
+        <br />
         <input
           name='email'
           type='text'
@@ -24,6 +23,7 @@ const UserEditForm = (props) => {
           onChange={(ev) => {
             props.handleChange(ev, 'updateUserFormData')
           }} />
+        <br />
         <button>update!</button>
       </form>
     </div>

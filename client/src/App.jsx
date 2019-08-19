@@ -48,7 +48,8 @@ class App extends React.Component {
       registerFormView: false,
       showPoll: null,
       isUserEdit: false,
-      createPollError: ''
+      createPollError: '',
+      LoginRegisterError: ''
     })
   }
 
@@ -92,61 +93,104 @@ class App extends React.Component {
     })
   }
 
-  handleLogin = async () => {
-    const userData = await loginUser(this.state.loginFormData);
+  resetLoginRegisterError = () => {
     this.setState({
-      currentUser: userData,
+      loginRegisterError: ''
     })
-    this.resetUserEdit()
-    this.clearFormData()
-    this.updatePolls()
+  }
+
+  handleCreateLoginRegisterError = (message) => {
     this.setState({
-      newPollForm: {
-        title: '',
-        open: true,
-        user_id: this.state.currentUser.id
-      },
-      newChoiceForms: [
-        {
-          name: '',
-          option_position: 0
+      loginRegisterError: message
+    })
+    setTimeout(this.resetLoginRegisterError, 2000)
+  }
+
+  handleLogin = async (ev) => {
+    ev.preventDefault();
+    try {
+      const userData = await loginUser(this.state.loginFormData);
+      this.setState({
+        currentUser: userData,
+      })
+      this.resetUserEdit()
+      this.clearFormData()
+      this.updatePolls()
+      this.setState({
+        newPollForm: {
+          title: '',
+          open: true,
+          user_id: this.state.currentUser.id
         },
-        {
-          name: '',
-          option_position: 1
-        }
-      ]
-    })
+        newChoiceForms: [
+          {
+            name: '',
+            option_position: 0
+          },
+          {
+            name: '',
+            option_position: 1
+          }
+        ]
+      })
+    } catch (ev) {
+      this.handleCreateLoginRegisterError('Invalid login info');
+    }
+  }
+
+  registerFrontEndCheck = () => {
+    let acceptedCharacters = /^[0-9a-zA-Z]+$/;
+    if (this.state.registerFormData.username.length === 0) {
+      this.handleCreateLoginRegisterError('Username cannot be blank')
+      return false;
+    }
+    if (this.state.registerFormData.username.length > 16) {
+      this.handleCreateLoginRegisterError('Username must be 16 characters or less')
+      return false;
+    }
+    if (!/^[0-9a-zA-Z_.-]+$/.test(this.state.registerFormData.username)) {
+      this.handleCreateLoginRegisterError('Invalid characters in username')
+      return false;
+    }
+    return true
+
   }
 
   handleRegister = async (ev) => {
     ev.preventDefault();
-    await registerUser(this.state.registerFormData);
-    const userData = await loginUser(this.state.registerFormData);
-    this.setState({
-      currentUser: userData,
-      registerFormView: false
-    })
-    this.resetUserEdit()
-    this.clearFormData()
-    this.updatePolls()
-    this.setState({
-      newPollForm: {
-        title: '',
-        open: true,
-        user_id: this.state.currentUser.id
-      },
-      newChoiceForms: [
-        {
-          name: '',
-          option_position: 0
+    if (!this.registerFrontEndCheck()) {
+      return
+    }
+    try {
+      await registerUser(this.state.registerFormData);
+      const userData = await loginUser(this.state.registerFormData);
+      this.setState({
+        currentUser: userData,
+        registerFormView: false
+      })
+      this.resetUserEdit()
+      this.clearFormData()
+      this.updatePolls()
+      this.setState({
+        newPollForm: {
+          title: '',
+          open: true,
+          user_id: this.state.currentUser.id
         },
-        {
-          name: '',
-          option_position: 1
-        }
-      ]
-    })
+        newChoiceForms: [
+          {
+            name: '',
+            option_position: 0
+          },
+          {
+            name: '',
+            option_position: 1
+          }
+        ]
+      })
+    } catch (ev) {
+      this.handleCreateLoginRegisterError(ev.response.data[0]);
+    }
   }
 
   handleLogout = () => {
@@ -164,7 +208,6 @@ class App extends React.Component {
   }
 
   switchRegisterFormView = () => {
-    console.log('hello')
     this.clearFormData()
     this.switchBoolean('registerFormView')
   }
@@ -355,13 +398,15 @@ class App extends React.Component {
     return (
       <div className="app">
         <header>
-          <Link to='/' id='logo-link'><h1 onClick={this.resetUserEdit} id='logo'>qwp</h1></Link>
+          <div id='header-overlay'>
+            <Link to='/' id='logo-link'><h1 onClick={this.resetUserEdit} id='logo'>qwp</h1></Link>
             {this.state.currentUser &&
               <nav>
                 <Link to='/' id='nav-username-link'><p id='nav-username' onClick={this.resetUserEdit}>{this.state.currentUser.username}</p></Link>
                 <button id='nav-logout' onClick={this.handleLogout}>logout</button>
               </nav>
             }
+          </div>
         </header>
         <main>
 
@@ -398,6 +443,7 @@ class App extends React.Component {
                 handleFormChange={this.handleFormChange}
                 registerFormView={this.state.registerFormView}
                 switchRegisterFormView={this.switchRegisterFormView}
+                loginRegisterError={this.state.loginRegisterError}
               />
           )} />
 
@@ -417,6 +463,7 @@ class App extends React.Component {
                 handleFormChange={this.handleFormChange}
                 registerFormView={this.state.registerFormView}
                 switchRegisterFormView={this.switchRegisterFormView}
+                loginRegisterError={this.state.loginRegisterError}
               />
           )} />
 
