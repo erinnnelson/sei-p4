@@ -12,6 +12,12 @@ body {
   animation: BackgroundGradient 200s ease infinite;
 }
 
+@keyframes BackgroundGradient { 
+  0%{background-position: 0% 13%}
+  50%{background-position: 100% 88%}
+  100%{background-position: 0% 13%}
+}
+
 button, input {
   outline: none;
 }
@@ -49,17 +55,21 @@ button, input {
   background: #fffffa;
   font-family: 'Baloo Bhai', cursive;
   line-height: 40px;
+  transition-property: box-shadow;
+  transition-duration: .2s;
+  transition-timing-function: linear;
+}
+
+.buttons-form-submit:hover {
+  box-shadow: 2px 5px 10px rgb(148, 148, 148);
+  transition-property: box-shadow;
+  transition-duration: .2s;
+  transition-timing-function: linear;
 }
 
 .buttons-form-submit:active {
   color: #12684e;
   background: #cececa;
-}
-
-@keyframes BackgroundGradient { 
-  0%{background-position:0% 13%}
-  50%{background-position:100% 88%}
-  100%{background-position:0% 13%}
 }
 
 .app {
@@ -177,16 +187,28 @@ nav button:active, nav p:active {
   width: 250px;
   height: 40px;
   border: none;
-  background: linear-gradient(165deg, #62ebab, #1ea57d);
+  background-image: linear-gradient(165deg, #62ebab, #62ebab, #1ea57d, #1ea57d);
+  background-size: 200% 200%;
+  background-position: 50% 50%;
   border-radius: 5px;
   font-size: 20px;
   color: #fffffa;
   box-shadow: 2px 5px 10px rgb(186, 186, 186);
   font-family: 'Baloo Bhai', cursive;
   line-height: 40px;
+  transition-property: background-position;
+  transition-duration: .3s;
+  transition-timing-function: linear;
 }
 
-#button-login-register-go:active {
+#button-login-register-switch:hover {
+  background-position: 90% 90%;
+  transition-property: background-position;
+  transition-duration: .3s;
+  transition-timing-function: linear;
+}
+
+#button-login-register-switch:active {
   background: #12684e;
   color: #cececa;
 }
