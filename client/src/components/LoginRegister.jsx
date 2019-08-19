@@ -16,6 +16,7 @@ const LoginRegister = (props) => {
           handleChange={props.handleFormChange}
           formData={props.registerFormData}
           loginRegisterError={props.loginRegisterError}
+          handlePasswordChange={props.handlePasswordChange}
         />
         :
         <Login
@@ -23,6 +24,7 @@ const LoginRegister = (props) => {
           handleChange={props.handleFormChange}
           formData={props.loginFormData}
           loginRegisterError={props.loginRegisterError}
+          handlePasswordChange={props.handlePasswordChange}
         />
       }
       <button id='button-login-register-switch' onClick={props.switchRegisterFormView}>

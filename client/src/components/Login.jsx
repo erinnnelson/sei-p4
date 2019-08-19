@@ -24,7 +24,7 @@ const Login = (props) => {
           placeholder='password...'
           value={props.formData.password}
           onChange={(ev) => {
-            props.handleChange(ev, 'loginFormData')
+            props.handlePasswordChange(ev, 'loginFormData')
           }} />
         </div>
         <button className='buttons-form-submit'>SIGN IN</button>

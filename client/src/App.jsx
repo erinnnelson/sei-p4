@@ -241,6 +241,17 @@ class App extends React.Component {
     }));
   }
 
+  handleLoginRegisterFormChange = (ev, formName) => {
+    const { name, value } = ev.target;
+    const lowerCaseValue = value.toLowerCase();
+    this.setState(prevState => ({
+      [formName]: {
+        ...prevState[formName],
+        [name]: lowerCaseValue
+      }
+    }));
+  }
+
   handleChoiceChange = (ev, i) => {
     const { name, value } = ev.target;
     this.setState(prevState => {
@@ -440,7 +451,8 @@ class App extends React.Component {
                 handleRegister={this.handleRegister}
                 loginFormData={this.state.loginFormData}
                 registerFormData={this.state.registerFormData}
-                handleFormChange={this.handleFormChange}
+                handleFormChange={this.handleLoginRegisterFormChange}
+                handlePasswordChange={this.handleFormChange}
                 registerFormView={this.state.registerFormView}
                 switchRegisterFormView={this.switchRegisterFormView}
                 loginRegisterError={this.state.loginRegisterError}

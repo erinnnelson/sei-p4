@@ -44,8 +44,9 @@ button, input {
 
 .buttons-form-submit {
   margin-top: -20px;
+  padding: 0;
   font-size: 24px;
-  width: 120px;
+  width: 130px;
   height: 40px;
   border-radius: 80px;
   box-shadow: 2px 5px 10px rgb(186, 186, 186);
@@ -58,6 +59,7 @@ button, input {
   transition-property: box-shadow;
   transition-duration: .2s;
   transition-timing-function: linear;
+  cursor: pointer;
 }
 
 .buttons-form-submit:hover {
@@ -152,45 +154,26 @@ nav button:active, nav p:active {
 }
 
 #login-container, #register-container {
-  height: 300px;
+  height: 320px;
 }
 
 #login-inputs {
-  height: 170px;
+  height: 176px;
 }
 
 #register-inputs {
-  height: 230px;
-}
-
-#button-sign-up, #button-sign-in {
-  margin-top: -20px;
-  font-size: 24px;
-  width: 120px;
-  height: 40px;
-  border-radius: 80px;
-  box-shadow: 2px 5px 10px rgb(186, 186, 186);
-  border: none;
-  color: #1ea57d;
-  font-weight: bold;
-  background: #fffffa;
-  font-family: 'Baloo Bhai', cursive;
-  line-height: 40px;
-}
-
-#button-sign-up:active, #button-sign-in:active {
-  color: #12684e;
-  background: #cececa;
+  height: 244px;
 }
 
 #button-login-register-switch {
   width: 250px;
   height: 40px;
   border: none;
-  background-image: linear-gradient(165deg, #62ebab, #62ebab, #1ea57d, #1ea57d);
-  background-size: 200% 200%;
+  background-image: linear-gradient(165deg, #62ebab, #62ebab, #62ebab, #1ea57d, #1ea57d, #1ea57d);
+  background-size: 300% 300%;
   background-position: 50% 50%;
   border-radius: 5px;
+  padding: 0;
   font-size: 20px;
   color: #fffffa;
   box-shadow: 2px 5px 10px rgb(186, 186, 186);
@@ -234,10 +217,61 @@ nav button:active, nav p:active {
   color: #12684e;
 }
 
+/* NEW POLL FORM */
+
 #poll-form-header {
+  display: inline-block;
   color: #2dc799;
+  cursor: pointer;
+}
+
+#poll-form-and-add-remove-options-container {
+  position: relative;
+}
+
+#add-remove-options-container{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 8px;
+}
+
+#poll-form-header:hover {
+  color: #1ea57d;
+}
+
+#poll-form-header:active {
+  color: #12684e;
+}
+
+.buttons-add-remove-options {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  line-height: 30px;
+  border-radius: 100%;
+  margin: 5px 10px;
+  border: 1px solid black;
+  user-select: none;
 }
 
 #poll-form-inputs {
   min-height: 230px;
+}
+
+.delete-choice-x {
+  opacity: .3;
+  margin: 32px 0 0 5px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.delete-choice-x:hover {
+  opacity: .8;
+  color: rgb(196, 43, 43);
+}
+
+.delete-choice-x:active {
+  opacity: .2;
+  color: rgb(0, 0, 0);
 }

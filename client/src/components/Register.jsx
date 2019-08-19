@@ -32,7 +32,7 @@ const Register = (props) => {
             placeholder='password...'
             value={props.formData.password}
             onChange={(ev) => {
-              props.handleChange(ev, 'registerFormData')
+              props.handlePasswordChange(ev, 'registerFormData')
             }} />
         </div>
         <button className='buttons-form-submit'>SIGN UP</button>
