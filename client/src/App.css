@@ -1,15 +1,36 @@
 /* GENERAL STYLING */
 
+/* html {
+
+} */
+
 body {
   width: 100vw;
-  height: 100vh;
-  display: flex;
+  height: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
   background: linear-gradient(315deg, #a7a7a7, #b2bea7, #bba2a0, #a299aa, #acaca2, #a7a7a7);
   background-size: 1000% 1000%;
   animation: BackgroundGradient 200s ease infinite;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  display: inline-block;
+  background: #fffffa;
+  margin: auto;
+  height: 100%;
+  bottom: 0;
+  min-width: 375px;
+  max-width: 600px;
+  /* overflow: auto; */
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  font-family: 'Baloo Bhai', cursive;
 }
 
 @keyframes BackgroundGradient { 
@@ -75,19 +96,6 @@ button, input {
   background: #cececa;
 }
 
-.app {
-  display: inline-block;
-  background: #fffffa;
-  margin: auto;
-  height: 101vh;
-  min-width: 375px;
-  max-width: 600px;
-  overflow: auto;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
-  font-family: 'Baloo Bhai', cursive;
-}
-
 .app::-webkit-scrollbar {
   display: none;
 }
@@ -108,6 +116,7 @@ header {
 }
 
 #logo {
+  display: inline-block;
   font-size: 35px;
   margin: 0;
   padding: 60px 0 0 0;
@@ -220,6 +229,10 @@ nav button:active, nav p:active {
 
 /* NEW POLL FORM */
 
+#poll-form-container {
+  margin-bottom: 40px;
+}
+
 #poll-form-header {
   display: inline-block;
   color: #2dc799;
@@ -260,11 +273,14 @@ nav button:active, nav p:active {
   user-select: none;
   color: #0d4635;
   background: linear-gradient(165deg, #62ebab, #1ea57d);
-  cursor: pointer;
 }
 
 #button-remove-option-grey {
   opacity: .3;
+}
+
+#button-remove-option, #button-add-option {
+  cursor: pointer;
 }
 
 #button-remove-option:active, #button-add-option:active {
@@ -287,4 +303,9 @@ nav button:active, nav p:active {
 .delete-choice-x:active {
   opacity: .8;
   color: rgb(196, 43, 43);
+}
+
+#create-poll-error-message {
+  position: absolute;
+  top: 0;
 }

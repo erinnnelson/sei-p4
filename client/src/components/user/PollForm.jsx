@@ -38,6 +38,7 @@ const PollForm = (props) => {
               </div>
             ))}
           </div>
+          {props.createPollError && <p id='create-poll-error-message'>{props.createPollError}</p>}
           <button className='buttons-form-submit'>CREATE</button>
         </form>
         <div id='add-remove-options-container'>
@@ -55,7 +56,6 @@ const PollForm = (props) => {
           </div>
         </div>
       </div>
-      {props.createPollError && <p>{props.createPollError}</p>}
     </div>
   )
 }
