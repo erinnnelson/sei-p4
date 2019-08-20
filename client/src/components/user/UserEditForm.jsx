@@ -3,9 +3,9 @@ import React from 'react';
 const UserEditForm = (props) => {
 
   return (
-    <div className="user-edit-form-container">
+    <div id="user-edit-form-container" className='form-divs'>
       <form onSubmit={(ev) => (props.handleUpdateUser(ev))} >
-        <p>Update Profile</p>
+        <div id='edit-profile-inputs'>
         <input
           name='username'
           type='text'
@@ -22,9 +22,9 @@ const UserEditForm = (props) => {
           value={props.formData.email}
           onChange={(ev) => {
             props.handleChange(ev, 'updateUserFormData')
-          }} />
-        <br />
-        <button>update!</button>
+            }} />
+          </div>
+        <button className='buttons-form-submit'>UPDATE</button>
       </form>
     </div>
   );

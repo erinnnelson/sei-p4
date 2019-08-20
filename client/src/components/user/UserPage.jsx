@@ -18,8 +18,8 @@ const UserPage = (props) => {
             formData={props.updateUserFormData}
             handleUpdateUser={props.handleUpdateUser}
             handleDeleteUser={props.handleDeleteUser}
+            switchBoolean={props.switchBoolean}
           />
-          <button onClick={() => (props.switchBoolean('isUserEdit'))}>cancel</button>
         </div>
         :
         <div>

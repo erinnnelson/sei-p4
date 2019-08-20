@@ -409,3 +409,19 @@ nav button:active, nav p:active {
 .poll-actual-delete {
   color: #9a1d1d;
 }
+
+/* EDIT PROFILE */
+
+#user-edit-container {
+  margin-top: 20px;
+}
+
+#user-edit-header {
+  display: inline-block;
+  color: #2dc799;
+}
+
+#edit-profile-inputs {
+  min-height: 190px;
+  margin-bottom: -15px;
+}

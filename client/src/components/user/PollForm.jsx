@@ -12,7 +12,6 @@ const PollForm = (props) => {
             <input
               type='text'
               name='title'
-              autoFocus
               placeholder='Question...'
               value={props.newPollForm.title}
               onChange={(ev) => {
