@@ -55,26 +55,58 @@ class PollDiv extends React.Component {
   render() {
     return (
       <div className="poll-div-container">
-        <Link to={`/poll/${this.props.poll.id}`}>
-          <h2>{this.props.poll.title}</h2>
-          {this.findWinners().length > 1
+        <h2>{this.props.poll.title}</h2>
+        <div className='poll-summary-container'>
+          <Link to={`/poll/${this.props.poll.id}`}>
+            <div className='poll-summary-container'>
+
+              {!this.state.votes
+                ?
+                <div className='poll-summary-no-votes'>
+                  <p>No Votes</p>
+                </div>
+                :
+                <div className='poll-summary-winners-container'>
+                  <div className='poll-summary-winners-header'>
+
+                    {this.findWinners().length > 1
+                      ?
+                      <p>Tied Vote:</p>
+                      :
+                      <p>Top Vote:</p>
+                    }
+                  </div>
+                  <div className='poll-summary-winners'>
+                    {this.findWinners().map(winner => (
+                      <div key={winner.id}>
+                        {winner.length > 15
+                          ?
+                          <p>{winner.slice(0, 12)}...</p>
+                          :
+                          <p>{winner}</p>
+                        }
+                      </div>
+                    ))}
+
+                  </div>
+                </div>
+              }
+
+
+            </div>
+          </Link>
+        </div>
+        <div className='poll-delete-container'>
+          {this.state.deleteCheck
             ?
-            <p className='poll-data-overview'>Tied Vote: {this.findWinners().join(', ')}</p>
+            <div className='poll-delete-check-container'>
+              <p className='poll-actual-delete' onClick={() => (this.props.handleDeletePoll(this.props.poll.id))}>DELETE</p>
+              <p className='poll-delete-cancel' onClick={this.deleteCheckSwitch}>CANCEL</p>
+            </div>
             :
-            <p className='poll-data-overview'>Top Vote: {this.findWinners().join(', ')}</p>
-        }
-          <p>{this.state.votes} total votes</p>
-        </Link>
-        {this.state.deleteCheck
-          ?
-          <div>
-            <p>ARE YOU SURE?</p>
-            <button onClick={() => (this.props.handleDeletePoll(this.props.poll.id))}>DELETE</button>
-            <button onClick={this.deleteCheckSwitch}>cancel</button>
-          </div>
-          :
-          <button onClick={this.deleteCheckSwitch}>delete</button>
-        }
+            <p className='poll-delete-request' onClick={this.deleteCheckSwitch}>delete</p>
+          }
+        </div>
       </div>
     );
   }

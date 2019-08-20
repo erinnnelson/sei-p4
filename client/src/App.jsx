@@ -78,6 +78,8 @@ class App extends React.Component {
     }
   }
 
+  // UPDATE VOTE COUNT IN USERPAGE - FUNCTION TO UPDATE ?
+
   // AUTH
   clearFormData = () => {
     this.setState({
@@ -465,6 +467,7 @@ class App extends React.Component {
               ?
               <ShowPoll
                 pollId={props.match.params.id}
+                updatePolls={this.updatePolls}
               />
               :
               <LoginRegister

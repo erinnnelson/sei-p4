@@ -191,6 +191,7 @@ nav button:active, nav p:active {
   transition-property: background-position;
   transition-duration: .3s;
   transition-timing-function: linear;
+  cursor: pointer;
 }
 
 #button-login-register-switch:hover {
@@ -318,7 +319,14 @@ nav button:active, nav p:active {
   color: #2dc799;
 }
 
-.poll-div-container {
+.poll-div-container h2 {
+  width: 80%;
+  font-size: 18px;
+  color: #0d4635;
+  margin: auto auto 0 auto;
+}
+
+.poll-summary-container {
   margin: 0 auto;
   width: 250px;
   height: 100%;
@@ -334,25 +342,70 @@ nav button:active, nav p:active {
   transition-property: background-position;
   transition-duration: .3s;
   transition-timing-function: linear;
-}
-.poll-div-container h2 {
-  font-size: 18px;
-  color: #0d4635
+  cursor: pointer;
 }
 
-.poll-div-container:hover {
+.poll-summary-container:hover {
   background-position: 90% 90%;
   transition-property: background-position;
   transition-duration: .3s;
   transition-timing-function: linear;
 }
 
-.poll-div-container:active {
+.poll-summary-container:active {
   background: #12684e;
   color: #cececa;
 }
 
-.poll-div-container a {
+.poll-summary-container a {
   text-decoration: none;
   color: #fffffa
+}
+
+.poll-summary-winners-container, .poll-summary-no-votes {
+  display: flex;
+  justify-content: space-around;
+  color: #0d4635
+}
+
+.poll-summary-winners-container p, .poll-summary-no-votes p {
+  margin: 0 auto;
+}
+
+.poll-summary-winners {
+  padding-bottom: 15px;
+}
+
+.poll-summary-winners p {
+  margin-bottom: -15px;
+}
+
+.poll-delete-container {
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.poll-delete-container {
+  width: 300px;
+  text-align: right;
+}
+
+.poll-delete-check-container p {
+  margin-left: 8px;
+}
+
+.poll-delete-check-container p, .poll-delete-request {
+  display: inline;
+}
+
+.poll-delete-request, .poll-actual-delete, .poll-delete-cancel {
+  cursor: pointer;
+}
+
+.poll-delete-request, .poll-delete-cancel {
+  color: #0d4635;
+}
+
+.poll-actual-delete {
+  color: #9a1d1d;
 }

@@ -54,6 +54,7 @@ class ShowPoll extends React.Component {
         choices: orderedChoices,
         votes: 0
       })
+      this.props.updatePolls();
       this.voteCount();
     } else {
       this.setState({
