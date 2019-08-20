@@ -351,7 +351,7 @@ class App extends React.Component {
       }
     })
     if (choiceError) {
-      this.handleCreatePollError('Please fill out all voting options')
+      this.handleCreatePollError('Please fill in all options')
       return false
     }
     return true;

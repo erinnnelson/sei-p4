@@ -229,7 +229,7 @@ nav button:active, nav p:active {
 /* NEW POLL FORM */
 
 #poll-form-container {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 #poll-form-header {
@@ -306,5 +306,7 @@ nav button:active, nav p:active {
 
 #create-poll-error-message {
   position: absolute;
-  top: 0;
+  bottom: -54px;;
+  left: 50%;
+  transform: translateX(-50%);
 }
