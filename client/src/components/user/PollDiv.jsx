@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
-import Choice from './Choice'
 
 class PollDiv extends React.Component {
   constructor(props) {
@@ -37,21 +36,33 @@ class PollDiv extends React.Component {
     }))
   }
 
+  findWinners = () => {
+    const sortChoices = this.props.poll.choices.sort((a, b) => (
+      (a.users.length > b.users.length) ? -1 : 1
+    ))
+
+    const checkTie = sortChoices.filter(choice => (
+      choice.users.length === sortChoices[0].users.length
+    ))
+    const winners = []
+    checkTie.map(choice => (
+      winners.push(choice.name)
+    ))
+    return winners;
+  }
+
 
   render() {
     return (
       <div className="poll-div-container">
         <Link to={`/poll/${this.props.poll.id}`}>
           <h2>{this.props.poll.title}</h2>
-          {this.reorderedChoices().map(choice => (
-            <div key={choice.id}>
-              <Choice
-                choice={choice}
-                votes={this.state.votes}
-              />
-
-            </div>
-          ))}
+          {this.findWinners().length > 1
+            ?
+            <p className='poll-data-overview'>Tied Vote: {this.findWinners().join(', ')}</p>
+            :
+            <p className='poll-data-overview'>Top Vote: {this.findWinners().join(', ')}</p>
+        }
           <p>{this.state.votes} total votes</p>
         </Link>
         {this.state.deleteCheck

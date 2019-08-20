@@ -473,6 +473,7 @@ class App extends React.Component {
                 loginFormData={this.state.loginFormData}
                 registerFormData={this.state.registerFormData}
                 handleFormChange={this.handleFormChange}
+                handlePasswordChange={this.handleFormChange}
                 registerFormView={this.state.registerFormView}
                 switchRegisterFormView={this.switchRegisterFormView}
                 loginRegisterError={this.state.loginRegisterError}
