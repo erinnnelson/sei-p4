@@ -66,7 +66,7 @@ class ShowPoll extends React.Component {
 
   render() {
     return (
-      <div className="show-poll-container">
+      <div id="show-poll-container">
         <h2>{this.state.poll && this.state.poll.title}</h2>
         {this.state.choices.map(choice => (
           <div key={choice.id}>
@@ -78,7 +78,7 @@ class ShowPoll extends React.Component {
 
           </div>
         ))}
-        <p>{this.state.votes} total votes</p>
+        <p className='total-votes'>{this.state.votes} total votes</p>
         {this.state.alreadyVoted ? "Already Voted" : ""}
       </div>
     );
