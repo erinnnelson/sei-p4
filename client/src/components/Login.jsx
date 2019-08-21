@@ -13,7 +13,8 @@ const Login = (props) => {
           name='username'
           type='text'
           placeholder='username...'
-          value={props.formData.username}
+            value={props.formData.username}
+            autocomplete='off'
           onChange={(ev) => {
             props.handleChange(ev, 'loginFormData')
           }} />
@@ -22,7 +23,8 @@ const Login = (props) => {
           name='password'
           type='password'
           placeholder='password...'
-          value={props.formData.password}
+            value={props.formData.password}
+            autocomplete='off'
           onChange={(ev) => {
             props.handlePasswordChange(ev, 'loginFormData')
           }} />

@@ -13,6 +13,7 @@ const Register = (props) => {
             type='text'
             placeholder='username...'
             value={props.formData.username}
+            autocomplete='off'
             onChange={(ev) => {
               props.handleChange(ev, 'registerFormData')
             }} />
@@ -22,6 +23,7 @@ const Register = (props) => {
             type='text'
             placeholder='email...'
             value={props.formData.email}
+            autocomplete='off'
             onChange={(ev) => {
               props.handleChange(ev, 'registerFormData')
             }} />

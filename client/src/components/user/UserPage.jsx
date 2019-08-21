@@ -14,11 +14,14 @@ const UserPage = (props) => {
         ?
         <div>
           <UserEdit
-            handleFormChange={props.handleFormChange}
+            handleFormChange={props.handleEditProfileFormChange}
             formData={props.updateUserFormData}
             handleUpdateUser={props.handleUpdateUser}
             handleDeleteUser={props.handleDeleteUser}
             switchBoolean={props.switchBoolean}
+            deleteUserCheck={props.deleteUserCheck}
+            resetDeleteUserCheck={props.resetDeleteUserCheck}
+            editUserSwitch={props.editUserSwitch}
           />
         </div>
         :
@@ -35,10 +38,15 @@ const UserPage = (props) => {
             handleCreatePoll={props.handleCreatePoll}
             createPollError={props.createPollError}
           />
-          <UserPolls
-            polls={props.polls}
-            handleDeletePoll={props.handleDeletePoll}
-          />
+          {props.polls.length
+            ?
+            <UserPolls
+              polls={props.polls}
+              handleDeletePoll={props.handleDeletePoll}
+            />
+            :
+            ''
+          }
         </div>
       }
     </div>

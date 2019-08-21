@@ -49,7 +49,8 @@ class App extends React.Component {
       showPoll: null,
       isUserEdit: false,
       createPollError: '',
-      LoginRegisterError: ''
+      LoginRegisterError: '',
+      deleteUserCheck: false
     })
   }
 
@@ -399,12 +400,25 @@ class App extends React.Component {
     this.setState({
       currentUser: updatedUser,
     })
+    this.resetDeleteUserCheck();
     this.resetUserEdit();
+  }
+
+  resetDeleteUserCheck = () => {
+    this.setState({
+      deleteUserCheck: false
+    })
   }
 
   handleDeleteUser = async () => {
     await deleteUser(this.state.currentUser.id)
+    this.resetDeleteUserCheck();
     this.handleLogout()
+  }
+
+  editUserSwitch = () => {
+    this.switchBoolean('isUserEdit')
+    this.resetDeleteUserCheck()
   }
 
   render() {
@@ -446,6 +460,10 @@ class App extends React.Component {
                 toggleEditMode={this.toggleEditMode}
                 handleUpdateUser={this.handleUpdateUser}
                 handleDeleteUser={this.handleDeleteUser}
+                handleEditProfileFormChange={this.handleLoginRegisterFormChange}
+                deleteUserCheck={this.state.deleteUserCheck}
+                resetDeleteUserCheck={this.resetDeleteUserCheck}
+                editUserSwitch={this.editUserSwitch}
               />
               :
               <LoginRegister

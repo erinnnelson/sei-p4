@@ -14,6 +14,7 @@ const PollForm = (props) => {
               name='title'
               placeholder='Question...'
               value={props.newPollForm.title}
+              autocomplete='off'
               onChange={(ev) => {
                 props.handleFormChange(ev, 'newPollForm')
               }}
@@ -25,6 +26,7 @@ const PollForm = (props) => {
                   name='name'
                   placeholder={`Option ${i + 1}...`}
                   value={choice.name}
+                  autocomplete='off'
                   onChange={(ev) => {
                     props.handleChoiceChange(ev, i)
                   }}

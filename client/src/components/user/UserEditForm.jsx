@@ -3,14 +3,15 @@ import React from 'react';
 const UserEditForm = (props) => {
 
   return (
-    <div id="user-edit-form-container" className='form-divs'>
+    <div id="user-edit-form-container">
       <form onSubmit={(ev) => (props.handleUpdateUser(ev))} >
-        <div id='edit-profile-inputs'>
+        <div id='edit-profile-inputs' className='form-divs'>
         <input
           name='username'
           type='text'
           placeholder='username...'
-          value={props.formData.username}
+            value={props.formData.username}
+            autocomplete='off'
           onChange={(ev) => {
             props.handleChange(ev, 'updateUserFormData')
           }} />
@@ -19,7 +20,8 @@ const UserEditForm = (props) => {
           name='email'
           type='text'
           placeholder='email...'
-          value={props.formData.email}
+            value={props.formData.email}
+            autocomplete='off'
           onChange={(ev) => {
             props.handleChange(ev, 'updateUserFormData')
             }} />
