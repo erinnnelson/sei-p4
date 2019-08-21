@@ -191,7 +191,7 @@ header {
   margin: 0;
   padding: 60px 0 0 0;
   color: #fffffa;
-  opacity: 1;
+  user-select: none;
 }
 
 #logo-link {
@@ -582,6 +582,7 @@ nav button:active, nav p:active {
 
 #show-poll-container {
   margin-top: 20px;
+  padding-bottom: 30px;
 }
 
 #show-poll-container h2 {
@@ -632,3 +633,56 @@ nav button:active, nav p:active {
 .total-votes {
   color: #79948c
 }
+
+#already-voted-error {
+  position: absolute;
+  margin-top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#url-copy-request {
+  border: 3px solid #62ebab;
+  color: #1ea57d;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 30%;
+  cursor: pointer;
+  user-select: none;
+  transition-property: background-color, color;
+  transition-duration: .2s;
+  transition-timing-function: linear;
+
+}
+
+#url-copy-request:hover {
+  border-color:#62ebab;
+  background: #62ebab;
+  color: #fffffa;
+  transition-property: background-color, color;
+  transition-duration: .2s;
+  transition-timing-function: linear;
+
+
+}
+
+#url-copy-request:active {
+  border-color:#1ea57d;
+  background: #1ea57d;
+  color: #cececa;
+  transition-property: background-color, color;
+  transition-duration: .01s;
+  transition-timing-function: linear;
+}
+
+#url-copy-request:visited {
+  border: 3px solid #62ebab;
+  color: #1ea57d;
+  background-color: none;
+}
+
+#url-copy-success {
+font-size: 20px;
+color: #1ea57d;
+user-select: none;
+} 
