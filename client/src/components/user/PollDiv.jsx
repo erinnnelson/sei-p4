@@ -47,7 +47,7 @@ class PollDiv extends React.Component {
     ))
     const winners = []
     checkTie.map(choice => (
-      winners.push(choice.name)
+      winners.push(choice)
     ))
     return winners;
   }
@@ -80,11 +80,11 @@ class PollDiv extends React.Component {
                   <div className='poll-summary-winners'>
                     {this.findWinners().map(winner => (
                       <div key={winner.id}>
-                        {winner.length > 15
+                        {winner.name.length > 15
                           ?
-                          <p>{winner.slice(0, 12)}...</p>
+                          <p>{winner.name.slice(0, 12)}...</p>
                           :
-                          <p>{winner}</p>
+                          <p>{winner.name}</p>
                         }
                       </div>
                     ))}
