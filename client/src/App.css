@@ -15,6 +15,12 @@ body {
   animation: BackgroundGradient 200s ease infinite;
 }
 
+@keyframes BackgroundGradient { 
+  0%{background-position: 0% 13%}
+  50%{background-position: 100% 88%}
+  100%{background-position: 0% 13%}
+}
+
 #root {
   height: 100%;
 }
@@ -23,19 +29,14 @@ body {
   display: inline-block;
   background: #fffffa;
   margin: auto;
+  padding-bottom: 10px;
   min-height: 100%;
   bottom: 0;
-  min-width: 375px;
-  max-width: 600px;
+  width: 375px;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   font-family: 'Baloo Bhai', cursive;
-}
-
-@keyframes BackgroundGradient { 
-  0%{background-position: 0% 13%}
-  50%{background-position: 100% 88%}
-  100%{background-position: 0% 13%}
+  position: relative;
 }
 
 button, input {
@@ -108,12 +109,80 @@ header {
   padding: 0;
   background: linear-gradient(165deg, #62ebab, #1ea57d);
   height: 145px;
+  width: 375px;
 }
 
 #header-overlay {
+  position: absolute;
+  top: 0;
   height: 140px;
-  background: url(./assets/qwp.png) no-repeat center center;;
-  background-size: 300px 100px;
+  width: 375px;
+  background: url(./assets/qwickpoll-2.png) no-repeat center center;;
+  animation: BackgroundLogoMove 40s infinite;
+  padding: 0;
+}
+
+#header-div {
+  position: absolute;
+  top: 0;
+  height: 140px;
+  width: 375px;
+}
+
+@keyframes BackgroundLogoMove { 
+  0% {
+    background-position: 50% 50%;
+    opacity: 0;
+    background-size: 98%;
+  }
+  12% {
+    opacity: 1;
+  }
+  24% {
+    background-position: 50% 50%;
+    opacity: 0;
+    background-size: 98%;
+  }
+  25% {
+    background-position: 130% 10%;
+    opacity: 0;
+    background-size: 130%;
+  }
+  37% {
+    opacity: 1;
+  }
+  49% {
+    background-position: 70% 10%;
+    opacity: 0;
+    background-size: 130%;
+  }
+  50% {
+    background-position: 50% 110%;
+    opacity: 0;
+    background-size: 75%;
+  }
+  62% {
+    opacity: 1;
+  }
+  74% {
+    background-position: 50% 20%;
+    opacity: 0;
+    background-size: 75%;
+  }
+  75% {
+    background-position: 180% 20%;
+    opacity: 0;
+    background-size: 90%;
+  }
+  87% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 20% 20%;
+    opacity: 0;
+    background-size: 90%;
+  }
+
 }
 
 #logo {
@@ -122,6 +191,7 @@ header {
   margin: 0;
   padding: 60px 0 0 0;
   color: #fffffa;
+  opacity: 1;
 }
 
 #logo-link {

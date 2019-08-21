@@ -426,6 +426,9 @@ class App extends React.Component {
       <div className="app">
         <header>
           <div id='header-overlay'>
+          </div>
+        </header>
+        <div id='header-div'>
             <Link to='/' id='logo-link'><h1 onClick={this.resetUserEdit} id='logo'>qwp</h1></Link>
             {this.state.currentUser &&
               <nav>
@@ -434,7 +437,6 @@ class App extends React.Component {
               </nav>
             }
           </div>
-        </header>
         <main>
 
           {/* USERPAGE VIEW */}
