@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 
 const voteSyntax = (choice) => {
   if (choice.users.length === 1) {

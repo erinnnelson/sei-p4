@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 import { fetchPoll, addUserVote } from '../../services/api-helper'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
@@ -36,6 +35,7 @@ class ShowPoll extends React.Component {
       this.setState(prevState => ({
         votes: prevState.votes + votes
       }))
+      return null
     })
   }
 

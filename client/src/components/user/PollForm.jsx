@@ -1,7 +1,5 @@
 import React from 'react';
 
-import UserPolls from './UserPolls'
-
 const PollForm = (props) => {
   return (
     <div id='poll-form-container'>
@@ -14,7 +12,7 @@ const PollForm = (props) => {
               name='title'
               placeholder='Question...'
               value={props.newPollForm.title}
-              autocomplete='off'
+              autoComplete='off'
               onChange={(ev) => {
                 props.handleFormChange(ev, 'newPollForm')
               }}
@@ -26,7 +24,7 @@ const PollForm = (props) => {
                   name='name'
                   placeholder={`Option ${i + 1}...`}
                   value={choice.name}
-                  autocomplete='off'
+                  autoComplete='off'
                   onChange={(ev) => {
                     props.handleChoiceChange(ev, i)
                   }}

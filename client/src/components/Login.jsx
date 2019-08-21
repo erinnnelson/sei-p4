@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 
 const Login = (props) => {
 
@@ -14,7 +13,7 @@ const Login = (props) => {
           type='text'
           placeholder='username...'
             value={props.formData.username}
-            autocomplete='off'
+            autoComplete='off'
           onChange={(ev) => {
             props.handleChange(ev, 'loginFormData')
           }} />
@@ -24,7 +23,7 @@ const Login = (props) => {
           type='password'
           placeholder='password...'
             value={props.formData.password}
-            autocomplete='off'
+            autoComplete='off'
           onChange={(ev) => {
             props.handlePasswordChange(ev, 'loginFormData')
           }} />

@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { loginUser, registerUser, verifyUser, fetchPolls, updateUser, deleteUser, createPoll, deletePoll, createChoice } from './services/api-helper'
-import decode from 'jwt-decode'
 
 import UserPage from './components/user/UserPage'
 import ShowPoll from './components/show/ShowPoll'
@@ -142,7 +141,6 @@ class App extends React.Component {
   }
 
   registerFrontEndCheck = () => {
-    let acceptedCharacters = /^[0-9a-zA-Z]+$/;
     if (this.state.registerFormData.username.length === 0) {
       this.handleCreateLoginRegisterError('Username cannot be blank')
       return false;
@@ -271,6 +269,7 @@ class App extends React.Component {
       const newArr = prevState.newChoiceForms
       newArr.map((choice, i) => {
         choice.option_position = i
+        return null;
       })
       return {
         newChoiceForms: newArr
@@ -352,6 +351,7 @@ class App extends React.Component {
       if (!choice.name.length) {
         choiceError = true;
       }
+      return null;
     })
     if (choiceError) {
       this.handleCreatePollError('Please fill in all options')

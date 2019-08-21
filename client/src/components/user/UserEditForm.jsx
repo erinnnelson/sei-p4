@@ -11,7 +11,7 @@ const UserEditForm = (props) => {
           type='text'
           placeholder='username...'
             value={props.formData.username}
-            autocomplete='off'
+            autoComplete='off'
           onChange={(ev) => {
             props.handleChange(ev, 'updateUserFormData')
           }} />
@@ -21,7 +21,7 @@ const UserEditForm = (props) => {
           type='text'
           placeholder='email...'
             value={props.formData.email}
-            autocomplete='off'
+            autoComplete='off'
           onChange={(ev) => {
             props.handleChange(ev, 'updateUserFormData')
             }} />
